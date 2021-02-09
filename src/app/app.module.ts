@@ -10,9 +10,6 @@ import { ApplicationFooterComponent } from './components/application-footer/appl
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './shared/authconfig.interceptor';
 import { ApplicationUserIconComponent } from './components/application-user-icon/application-user-icon.component';
-import { StepOneComponent } from './rooms/components/room-booking-steps/step-one/step-one.component';
-import { BookingCardComponent } from './rooms/components/room-booking-steps/booking-card/booking-card.component';
-import { StepTwoComponent } from './booking/pages/booking-success/booking-success.component';
 import { VisitorBookingsComponent } from './bookings/visitor-bookings/visitor-bookings.component';
 
 @NgModule({
@@ -21,9 +18,7 @@ import { VisitorBookingsComponent } from './bookings/visitor-bookings/visitor-bo
     ApplicationHeaderComponent,
     ApplicationFooterComponent,
     ApplicationUserIconComponent,
-    StepOneComponent,
-    StepTwoComponent,
-    BookingCardComponent,
+
     VisitorBookingsComponent,
   ],
   imports: [

@@ -7,7 +7,6 @@ import { RoomsComponent } from './rooms.component';
 import { RoomReviewsComponent } from './components/room-reviews/room-reviews.component';
 import { RoomBookingComponent } from './components/room-booking/room-booking.component';
 import { RoomAddReviewComponent } from './components/room-add-review/room-add-review.component';
-import { RoomBookingStepsComponent } from './components/room-booking-steps/room-booking-steps.component';
 import { RoomReviewStarsComponent } from './components/room-review-stars/room-review-stars.component';
 import { CalculateRoomRatingComponent } from './components/calculate-room-rating/calculate-room-rating.component';
 
@@ -19,7 +18,7 @@ import { CalculateRoomRatingComponent } from './components/calculate-room-rating
     RoomReviewsComponent,
     RoomBookingComponent,
     RoomAddReviewComponent,
-    RoomBookingStepsComponent,
+   
     RoomReviewStarsComponent,
     CalculateRoomRatingComponent,
     

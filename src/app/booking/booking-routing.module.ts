@@ -5,10 +5,10 @@ import { BookingSuccessComponent } from './pages/booking-success/booking-success
 
 const routes: Routes = [
   {
-    path: 'booking-start',
+    path: 'start',
     component: BookingStartComponent,
   },
-  { path: 'booking-success', component: BookingSuccessComponent },
+  { path: 'success', component: BookingSuccessComponent },
 ];
 
 @NgModule({
