@@ -1,0 +1,52 @@
+.input-group .input-group-prepend .input-group-text {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  display: flex;
+  align-items: center;
+  padding: 0.6rem 0.75rem;
+  margin-bottom: 0;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #4e5079;
+  text-align: center;
+  white-space: nowrap;
+  background-color: #fff;
+  border: 0.0625rem solid #edf0f7;
+  transition: all 0.3s ease-in-out;
+}
+
+.sign-up-section {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.create-title,
+.login-text {
+  color: #4e66f8;
+  font-weight: 900;
+  opacity: 1;
+}
+
+.login-text:hover {
+  opacity: 0.7;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.create-button {
+  background-color: #4e66f8;
+  border: #4e66f8;
+}
+
+#picture-input {
+  visibility: hidden;
+}
+
+.uploaded-picture {
+  height: 100px;
+}
+
+.own-image {
+  font-size: small;
+}

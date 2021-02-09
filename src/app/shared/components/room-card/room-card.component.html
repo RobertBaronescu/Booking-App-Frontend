@@ -1,0 +1,45 @@
+<div class="card h-100 border-0 shadow main-card" (click)="navigateToRoom()">
+  <div class="card-img-top overflow-hidden gradient-overlay top-card">
+    <img
+      class="img-fluid"
+      [src]="room.image"
+      alt="Mid-Century Modern Garden Paradise"
+    /><a class="tile-link"></a>
+    <div class="card-img-overlay-bottom z-index-20">
+      <div class="media text-white text-sm align-items-center avatar-card">
+        <img
+          class="avatar avatar-border-white mr-2"
+          src="https://d19m59y37dris4.cloudfront.net/directory/1-6-1/img/avatar/avatar-10.jpg"
+          alt="Jack"
+        />
+      </div>
+    </div>
+    <div class="card-img-overlay-top text-right">
+      <a class="card-fav-icon position-relative z-index-40" href=""> </a>
+    </div>
+  </div>
+  <div class="card-body d-flex align-items-center">
+    <div class="w-100">
+      <h6 class="card-title">
+        <a class="text-decoration-none text-dark" href="detail-rooms.html">{{
+          room?.name
+        }}</a>
+      </h6>
+      <div class="d-flex card-subtitle mb-3">
+        <p class="flex-grow-1 mb-0 text-muted text-sm">
+          {{ room?.type }}
+        </p>
+        <p class="flex-shrink-1 mb-0 card-stars text-xs text-right">
+          <i class="fa fa-star text-warning"></i
+          ><i class="fa fa-star text-warning"></i
+          ><i class="fa fa-star text-warning"></i
+          ><i class="fa fa-star text-warning"></i
+          ><i class="fa fa-star text-warning"></i>
+        </p>
+      </div>
+      <p class="card-text text-muted">
+        <span class="h4 text-primary price">{{ room?.price }}</span> per night
+      </p>
+    </div>
+  </div>
+</div>

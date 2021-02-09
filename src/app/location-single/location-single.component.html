@@ -1,0 +1,123 @@
+<section class="py-5 bg-gray-100 shadow location-section">
+  <div class="container">
+    <h1 class="city-name">{{ location?.name | uppercase }}</h1>
+    <p class="lead mb-5 city-description">
+      {{ location?.description }}
+    </p>
+  </div>
+</section>
+
+<section class="py-5">
+  <div class="container">
+    <div
+      class="d-flex justify-content-between align-items-center flex-column flex-md-row mb-4"
+    >
+      <div class="mr-3">
+        <p class="mb-3 mb-md-0">
+          <strong>{{ rooms?.length }}</strong> results found
+        </p>
+      </div>
+      <!-- <div>
+        <label class="form-label mr-2" for="form_sort">Sort by</label>
+        <div class="dropdown bootstrap-select">
+          <select
+            class="selectpicker"
+            name="sort"
+            id="form_sort"
+            data-style="btn-selectpicker"
+            title=""
+            tabindex="null"
+          >
+            <option value="sortBy_0">Most popular</option>
+            <option value="sortBy_1">Recommended</option>
+            <option value="sortBy_2">Newest</option>
+            <option value="sortBy_3">Oldest</option>
+            <option value="sortBy_4">Closest</option>
+          </select>
+          <div
+            class="dropdown-menu"
+            style="max-height: 367.8px; overflow: hidden; min-height: 153px"
+          >
+            <div
+              class="inner show"
+              role="listbox"
+              id="bs-select-1"
+              tabindex="-1"
+              aria-activedescendant="bs-select-1-0"
+              style="max-height: 351.8px; overflow-y: auto; min-height: 137px"
+            >
+              <ul
+                class="dropdown-menu inner show"
+                role="presentation"
+                style="margin-top: 0px; margin-bottom: 0px"
+              >
+                <li class="selected active">
+                  <a
+                    role="option"
+                    class="dropdown-item active selected"
+                    id="bs-select-1-0"
+                    tabindex="0"
+                    aria-setsize="5"
+                    aria-posinset="1"
+                    aria-selected="true"
+                    ><span class="text">Most popular </span></a
+                  >
+                </li>
+                <li>
+                  <a
+                    role="option"
+                    class="dropdown-item"
+                    id="bs-select-1-1"
+                    tabindex="0"
+                    ><span class="text">Recommended </span></a
+                  >
+                </li>
+                <li>
+                  <a
+                    role="option"
+                    class="dropdown-item"
+                    id="bs-select-1-2"
+                    tabindex="0"
+                    ><span class="text">Newest </span></a
+                  >
+                </li>
+                <li>
+                  <a
+                    role="option"
+                    class="dropdown-item"
+                    id="bs-select-1-3"
+                    tabindex="0"
+                    ><span class="text">Oldest </span></a
+                  >
+                </li>
+                <li>
+                  <a
+                    role="option"
+                    class="dropdown-item"
+                    id="bs-select-1-4"
+                    tabindex="0"
+                    ><span class="text">Closest </span></a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div> -->
+    </div>
+    <div class="row">
+      <div
+        class="col-sm-6 col-lg-4 mb-5 hover-animate"
+        *ngFor="let room of rooms"
+      >
+        <app-room-card [room]="room"></app-room-card>
+      </div>
+    </div>
+
+    <div class="d-flex align-items-center justify-content-center">
+      <button type="button" class="btn btn-primary load-more-btn">
+        Load more
+      </button>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,35 @@
+.avatar {
+  position: absolute;
+  border-radius: 100%;
+  background: #fff;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.15);
+  width: 4rem;
+  height: 4rem;
+  bottom: 0;
+  left: 0;
+  border: 1px solid #fff;
+}
+
+img {
+  opacity: 1;
+  transform: translate3d(0px, 0px, 0px);
+  transition-duration: 0ms;
+  position: relative;
+}
+
+.top-card {
+  height: 190px;
+  position: relative !important;
+}
+
+@media (min-width: 768px) {
+  .main-card:hover {
+    transform: translateY(-0.3rem);
+    transition: all 0.3s ease-in;
+    cursor: pointer;
+  }
+}
+
+.price {
+  color: #4e66f8 !important;
+}

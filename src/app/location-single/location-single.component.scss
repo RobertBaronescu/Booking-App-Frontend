@@ -1,0 +1,35 @@
+.city-name {
+  margin-bottom: 0.5rem;
+  font-weight: 900;
+  line-height: 1.3;
+  font-size: 3.5rem;
+  color: #000000;
+}
+
+.badge-transparent {
+  color: #212529;
+  background: rgba(248, 249, 250, 0.9);
+  top: 2px;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.load-more-btn {
+  background-color: #4e66f8;
+  border: none;
+}
+
+.load-more-btn:hover {
+  background-color: #314cfc;
+  transition: all 0.3s ease-in-out;
+}
+
+.location-section {
+  background-color: #f3eded !important;
+}
+
+.city-description {
+  color: #6c757d;
+}

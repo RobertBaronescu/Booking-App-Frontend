@@ -1,0 +1,181 @@
+<section>
+  <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active carousel-pictures">
+        <img
+          src="https://d19m59y37dris4.cloudfront.net/directory/1-6-1/img/photo/photo-1426122402199-be02db90eb90.jpg"
+          class="w-50"
+          alt="..."
+        />
+        <img
+          src="https://d19m59y37dris4.cloudfront.net/directory/1-6-1/img/photo/photo-1512917774080-9991f1c4c750.jpg"
+          class="w-50"
+          alt="..."
+        />
+      </div>
+      <div class="carousel-item carousel-pictures">
+        <img
+          src="https://d19m59y37dris4.cloudfront.net/directory/1-6-1/img/photo/photo-1494526585095-c41746248156.jpg"
+          class="w-50"
+          alt="..."
+        />
+        <img
+          src="https://d19m59y37dris4.cloudfront.net/directory/1-6-1/img/photo/photo-1488805990569-3c9e1d76d51c.jpg"
+          class="w-50"
+          alt="..."
+        />
+      </div>
+      <div class="carousel-item carousel-pictures">
+        <img
+          src="https://d19m59y37dris4.cloudfront.net/directory/1-6-1/img/photo/photo-1522771739844-6a9f6d5f14af.jpg"
+          class="w-50"
+          alt="..."
+        />
+        <img
+          src="https://d19m59y37dris4.cloudfront.net/directory/1-6-1/img/photo/photo-1484154218962-a197022b5858.jpg"
+          class="w-50"
+          alt="..."
+        />
+      </div>
+    </div>
+    <a
+      class="carousel-control-prev"
+      href="#carouselExampleControls"
+      role="button"
+      data-slide="prev"
+    >
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a
+      class="carousel-control-next"
+      href="#carouselExampleControls"
+      role="button"
+      data-slide="next"
+    >
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+</section>
+<div class="container py-5">
+  <div class="row">
+    <div class="col-lg-8">
+      <div class="text-block">
+        <p class="text-primary room-address">
+          <i class="fa-map-marker-alt fa mr-1"></i> {{ room?.address }}
+        </p>
+        <h1>{{ room?.name }}</h1>
+        <p class="text-muted text-uppercase mb-4">{{ room?.type }}</p>
+        <ul class="list-inline text-sm mb-4">
+          <li class="list-inline-item mr-3">
+            <i class="fa fa-users mr-1 text-secondary icon"></i> 4 guests
+          </li>
+          <li class="list-inline-item mr-3">
+            <i class="fa fa-door-open mr-1 text-secondary icon"></i> 1 bedroom
+          </li>
+          <li class="list-inline-item mr-3">
+            <i class="fa fa-bed mr-1 text-secondary icon"></i> 3 beds
+          </li>
+          <li class="list-inline-item mr-3">
+            <i class="fa fa-bath mr-1 text-secondary icon"></i> 1 bath
+          </li>
+        </ul>
+        <p class="text-muted font-weight-light">
+          {{ room?.smallDescription }}
+        </p>
+        <h6 class="mb-3 font-weight-bolder mt-5">The space</h6>
+        <p class="text-muted font-weight-light">
+          {{ room?.theSpace }}
+        </p>
+        <p class="text-muted font-weight-light">Also in the apartment:</p>
+        <ul class="text-muted font-weight-light">
+          <li>TV with Netflix and DirectTVNow</li>
+          <li>Free WiFi</li>
+          <li>Gourmet Coffee/Tea making supplies</li>
+          <li>Fresh Sheets and Towels</li>
+          <li>
+            Toaster, microwave, pots and pans and basic cooking needs like salt,
+            pepper, sugar, and olive oil.
+          </li>
+          <li>Air Conditioning to keep you cool all summer!</li>
+        </ul>
+        <p class="text-muted font-weight-light">
+          The apartment is surprisingly quiet for being in the heart of a
+          vibrant, bustling neighborhood.
+        </p>
+        <h6 class="mb-3 font-weight-bolder mt-5">Interaction with guests</h6>
+        <p class="text-muted font-weight-light">
+          {{ room?.interactionWithGuests }}
+        </p>
+      </div>
+      <div class="text-block mt-5">
+        <h4 class="mb-4">Amenities</h4>
+        <div class="row">
+          <div class="col-md-6">
+            <ul class="list-unstyled text-muted">
+              <li class="mb-2">
+                <i
+                  class="fa fa-wifi text-secondary w-1rem mr-3 text-center icon"
+                ></i
+                ><span class="text-sm">Wifi</span>
+              </li>
+              <li class="mb-2">
+                <i
+                  class="fa fa-tv text-secondary w-1rem mr-3 text-center icon"
+                ></i
+                ><span class="text-sm">Cable TV</span>
+              </li>
+              <li class="mb-2">
+                <i
+                  class="fa fa-snowflake text-secondary w-1rem mr-3 text-center icon"
+                ></i
+                ><span class="text-sm">Air conditioning</span>
+              </li>
+              <li class="mb-2">
+                <i
+                  class="fa fa-thermometer-three-quarters text-secondary w-1rem mr-3 text-center icon"
+                ></i
+                ><span class="text-sm">Heating</span>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-6">
+            <ul class="list-unstyled text-muted">
+              <li class="mb-2">
+                <i
+                  class="fa fa-bath text-secondary w-1rem mr-3 text-center icon"
+                ></i
+                ><span class="text-sm">Toiletteries</span>
+              </li>
+              <li class="mb-2">
+                <i
+                  class="fa fa-utensils text-secondary w-1rem mr-3 text-center icon"
+                ></i
+                ><span class="text-sm">Equipped Kitchen</span>
+              </li>
+              <li class="mb-2">
+                <i
+                  class="fa fa-laptop text-secondary w-1rem mr-3 text-center icon"
+                ></i
+                ><span class="text-sm">Desk for work</span>
+              </li>
+              <li class="mb-2">
+                <i
+                  class="fa fa-tshirt text-secondary w-1rem mr-3 text-center icon"
+                ></i
+                ><span class="text-sm">Washing machine</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <app-room-reviews
+        [reviews]="room?.reviews"
+        (reviewAddEvent)="onReviewAdd($event)"
+      ></app-room-reviews>
+    </div>
+    <div class="col-lg-4"><app-room-booking></app-room-booking></div>
+  </div>
+</div>

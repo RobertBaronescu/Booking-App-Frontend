@@ -1,0 +1,48 @@
+<div class="text-block" *ngIf="reviews?.length">
+  <h5 class="mb-4 mt-5">Listing Reviews</h5>
+
+  <div
+    class="tab-pane fade active show"
+    id="nav-reviews"
+    role="tabpanel"
+    aria-labelledby="nav-reviews-tab"
+    *ngFor="let review of reviews"
+  >
+    <div class="card bg-white border p-4 mb-4 review-card">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <div class="image-author d-flex flex-column">
+          <a routerLink="user/personal-info" class="h5 review-title">
+            <img [src]="review?.avatar" alt="" />
+          </a>
+
+          <span class="list-item small mr-3 review-text">
+            by {{ review?.author }}
+          </span>
+        </div>
+        <div class="d-flex justify-content-end flex-column">
+          <div class="d-flex justify-content-center flex-row">
+            <i
+              *ngFor="let star of stars; let index = index"
+              class="star fa-star fas mr-1"
+              [ngClass]="{
+                'text-warning': index < review!.rating,
+                'text-gray': index >= review!.rating
+              }"
+            ></i>
+          </div>
+          <div class="mt-2">
+            <span class="list-item small review-text">
+              {{ review?.createdDate | date }}
+            </span>
+          </div>
+        </div>
+      </div>
+      <p class="m-0 review-text mt-2">
+        {{ review?.content }}
+      </p>
+    </div>
+  </div>
+  <app-room-add-review
+    (addReviewEvent)="onReviewAdd($event)"
+  ></app-room-add-review>
+</div>

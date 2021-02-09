@@ -1,0 +1,8 @@
+<div className="review-stars-container" #container>
+  <i
+    *ngFor="let star of stars; let index = index"
+    class="review-star star fas fa-star text-gray"
+    [attr.data-star]="index + 1"
+    (click)="onStarInteract(star)"
+  ></i>
+</div>

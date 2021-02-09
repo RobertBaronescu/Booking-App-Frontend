@@ -1,0 +1,87 @@
+.book-your-holiday-title {
+  margin-bottom: 0;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #868e96;
+  font-weight: bold;
+  color: #4e66f8 !important;
+}
+
+.house-rules-title,
+.night-in-city {
+  font-weight: 900;
+  line-height: 1.3;
+}
+
+.step-one-title {
+  color: #868e96 !important;
+}
+
+.date-tile {
+  display: flex;
+  width: 4.5rem;
+  height: 4.5rem;
+  text-align: center;
+  color: #4e66f8;
+  border-radius: 0.4rem;
+  background: #eaedfe;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.step-one-section {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.things-to-keep-in-mind {
+  padding-top: 2rem;
+  padding-bottom: 1rem;
+  border-top: 1px solid #e9ecef;
+}
+
+.time-period {
+  padding-bottom: 1rem;
+}
+
+.keep-in-mind-section {
+  border-bottom: 1px solid #e9ecef;
+  padding-bottom: 1rem;
+}
+
+.icon-rounded {
+  width: 3rem;
+  height: 3rem;
+  line-height: 3rem;
+  border-radius: 50%;
+  text-align: center;
+  display: inline-block;
+  background-color: #fce8f1;
+}
+
+.rule-icon {
+  color: #e83e8c !important;
+}
+
+
+
+
+
+
+
+.btn {
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #fff;
+  background-color: #4e66f8;
+  border-color: #4e66f8;
+  padding: 0.525rem 0.75rem;
+  font-size: 0.8rem;
+}
+
+.btn:hover {
+background-color: #2945fc;
+}

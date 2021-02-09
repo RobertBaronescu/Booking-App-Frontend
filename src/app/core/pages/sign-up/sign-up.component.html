@@ -1,0 +1,211 @@
+<div class="container sign-up-section">
+  <div class="row justify-content-center">
+    <div class="col-12">
+      <div class="text-center text-md-center mb-5 mt-md-0 text-dark">
+        <h1 class="mb-0 h3 create-title">Create an account</h1>
+      </div>
+    </div>
+    <div class="col-12 col-md-5 order-lg-1">
+      <div
+        class="signin-inner mt-3 mt-lg-0 bg-white no-border p-4 p-lg-5 w-100 fmxw-500"
+      >
+        <form action="#" [formGroup]="registerForm" (ngSubmit)="formSubmit()">
+          <div class="form-group">
+            <label for="exampleInputIcon3">Your name</label>
+            <div class="input-group mb-4">
+              <div class="input-group-prepend">
+                <span class="input-group-text"
+                  ><span class="fas fa-user"></span
+                ></span>
+              </div>
+              <input
+                formControlName="name"
+                class="form-control"
+                id="exampleInputIcon3"
+                placeholder="John Doe"
+                type="text"
+                aria-label="email adress"
+                required
+              />
+            </div>
+            <div
+              class="alert alert-danger"
+              role="alert"
+              *ngIf="
+                registerForm.controls.name?.invalid &&
+                (registerForm.controls.name?.dirty ||
+                  registerForm.controls.name?.touched)
+              "
+            >
+              <div *ngIf="registerForm.controls.name?.errors?.required">
+                Name is required.
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputIcon4">Your email</label>
+            <div class="input-group mb-4">
+              <div class="input-group-prepend">
+                <span class="input-group-text"
+                  ><span class="fas fa-envelope"></span
+                ></span>
+              </div>
+              <input
+                class="form-control"
+                id="exampleInputIcon4"
+                placeholder="example@company.com"
+                type="text"
+                aria-label="email adress"
+                formControlName="email"
+              />
+            </div>
+            <div
+              class="alert alert-danger"
+              role="alert"
+              *ngIf="
+                registerForm.controls.email?.invalid &&
+                (registerForm.controls.email?.dirty ||
+                  registerForm.controls.email?.touched)
+              "
+            >
+              <div *ngIf="registerForm.controls.email.errors?.required">
+                E-mail is required.
+              </div>
+              <div *ngIf="registerForm.controls.email.errors?.email">
+                Please provide a valid e-mail address.
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="form-group">
+              <label for="password">Password</label>
+              <div class="input-group mb-4">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"
+                    ><span class="fas fa-unlock-alt"></span
+                  ></span>
+                </div>
+                <input
+                  formControlName="password"
+                  class="form-control"
+                  id="password"
+                  placeholder="Password"
+                  type="password"
+                  aria-label="Password"
+                  required
+                />
+              </div>
+              <div
+                class="alert alert-danger"
+                role="alert"
+                *ngIf="
+                  registerForm.controls.password?.invalid &&
+                  (registerForm.controls.password?.dirty ||
+                    registerForm.controls.password?.touched)
+                "
+              >
+                <div *ngIf="registerForm.controls.password?.errors?.required">
+                  Password is required.
+                </div>
+                <div *ngIf="registerForm.controls.password?.errors?.minlength">
+                  Password must be at least 6 characters.
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="password_confirm">Confirm Password</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"
+                    ><span class="fas fa-unlock-alt"></span
+                  ></span>
+                </div>
+                <input
+                  class="form-control"
+                  id="password_confirm"
+                  placeholder="Confirm password"
+                  type="password"
+                  aria-label="Password"
+                  required
+                  formControlName="confirmPassword"
+                />
+              </div>
+              <div
+                class="alert alert-danger"
+                role="alert"
+                *ngIf="
+                  registerForm.controls.confirmPassword?.invalid &&
+                  (registerForm.controls.confirmPassword?.dirty ||
+                    registerForm.controls.confirmPassword?.touched)
+                "
+              >
+                <div
+                  *ngIf="
+                    registerForm.controls.confirmPassword?.errors?.required
+                  "
+                >
+                  Password is required.
+                </div>
+                <div
+                  *ngIf="
+                    registerForm.controls.confirmPassword?.errors?.mustMatch
+                  "
+                >
+                  Password must match.
+                </div>
+              </div>
+            </div>
+
+            <div class="form-check mb-4">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="terms"
+                formControlName="checkbox"
+              />
+
+              <label class="form-check-label" for="terms"
+                ><span class="small"
+                  >I agree to the terms and conditions</span
+                ></label
+              >
+              <div
+                *ngIf="
+                  registerForm.controls.checkbox?.value === false &&
+                  registerForm.controls.checkbox?.dirty
+                "
+                class="alert alert-danger"
+              >
+                Please agree to the terms and conditions.
+              </div>
+            </div>
+          </div>
+          <button
+            type="submit"
+            class="btn btn-block btn-primary create-button"
+            [disabled]="!registerForm.valid"
+          >
+            Create an account
+          </button>
+        </form>
+
+        <div
+          class="d-block d-sm-flex justify-content-center align-items-center mt-4 flex-column"
+        >
+          <span class="font-weight-normal">Already have an account? </span>
+          <a class="font-weight-bold login-text" routerLink="/login"
+            >Login here</a
+          >
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-7 order-lg-2 d-none d-md-block">
+      <img
+        src="https://demo.themesberg.com/bootstrap/spaces/assets/img/illustrations/hero.svg"
+        class="img-fluid"
+        alt="Forest Illustration"
+      />
+    </div>
+  </div>
+</div>

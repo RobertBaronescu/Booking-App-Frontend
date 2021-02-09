@@ -1,0 +1,21 @@
+<a class="log-in" *ngIf="!user" routerLink="/login">Log in</a>
+
+<div class="btn-group dropleft" *ngIf="user">
+  <div
+    class="dropdown-toggle user-info"
+    id="dropdownMenuButton"
+    data-toggle="dropdown"
+    aria-haspopup="true"
+    aria-expanded="false"
+  >
+    <span class="mr-2">{{ user?.name }}</span>
+    <img [src]="user?.picture" class="user-icon" alt="" />
+  </div>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" routerLink="/user/account">Go to account</a>
+    <!-- <a class="dropdown-item" href="#">Another action</a> -->
+    <a class="dropdown-item log-out" routerLink="/home" (click)="logOut()"
+      >Sign out</a
+    >
+  </div>
+</div>
