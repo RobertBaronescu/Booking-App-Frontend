@@ -1,4 +1,4 @@
-<form method="post" *ngIf="authService.isLoggedIn">
+<div *ngIf="authService.isLoggedIn">
   <div class="d-flex justify-content-between align-items-center mb-3 mt-5">
     <h2 class="h5 m-0">Add a review</h2>
     <app-room-review-stars
@@ -6,27 +6,43 @@
       (onStarsSelect)="onReviewStarHandle($event)"
     ></app-room-review-stars>
   </div>
-  <textarea
-    name="description"
-    class="form-control border"
-    placeholder="Add a review"
-    rows="6"
-    maxlength="1000"
-    required=""
-    (input)="decrementCharacters($event)"
-    #reviewTextarea
-  ></textarea>
-  <div class="d-flex justify-content-between mt-3">
-    <small class="font-weight-light"
-      ><span id="charactersRemaining">{{ characters }}</span> characters
-      remaining</small
+  <form [formGroup]="reviewDescriptionForm" (ngSubmit)="formSubmit()">
+    <textarea
+      name="description"
+      class="form-control border"
+      placeholder="Add a review"
+      rows="6"
+      maxlength="1000"
+      required=""
+      (input)="decrementCharacters($event)"
+      formControlName="description"
+    ></textarea>
+    <div
+      class="alert alert-danger mt-2"
+      role="alert"
+      *ngIf="
+        reviewDescriptionForm.get('description')?.invalid &&
+        (reviewDescriptionForm.get('description')?.dirty ||
+          reviewDescriptionForm.get('description')?.touched)
+      "
     >
-    <button
-      type="submit"
-      class="btn btn-primary animate-up-2 add-review-btn"
-      (click)="postReview(reviewTextarea.value, $event)"
-    >
-      Add review
-    </button>
-  </div>
-</form>
+      <div *ngIf="reviewDescriptionForm.get('description')?.errors?.required">
+        Description is required.
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-between mt-3">
+      <small class="font-weight-light"
+        ><span id="charactersRemaining">{{ characters }}</span> characters
+        remaining</small
+      >
+      <button
+        type="submit"
+        class="btn btn-primary animate-up-2 add-review-btn"
+        [disabled]="!reviewDescriptionForm.valid"
+      >
+        Add review
+      </button>
+    </div>
+  </form>
+</div>

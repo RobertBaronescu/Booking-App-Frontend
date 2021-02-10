@@ -10,27 +10,29 @@
       </h1>
 
       <div class="text-block time-period">
-        <h5 class="mb-4 night-in-city">1 night in London</h5>
+        <h5 class="mb-4 night-in-city">
+          {{ numberOfDays }} nights in {{ room?.address }}
+        </h5>
         <div class="row mb-3">
           <div class="col-md-6 d-flex align-items-center mb-3 mb-md-0">
             <div class="date-tile mr-3">
               <div class="text-uppercase">
-                <span class="text-sm">Apr</span><br /><strong class="text-lg"
-                  >17</strong
-                >
+                <span class="text-sm">{{ startDate[1] }}</span
+                ><br /><strong class="text-lg">{{ startDate[2] }}</strong>
               </div>
             </div>
-            <p class="text-sm mb-0">Wednesday check-in<br />3PM - 7PM</p>
+            <p class="text-sm mb-0">
+              {{ startDate[0] }} check-in<br />3PM - 7PM
+            </p>
           </div>
           <div class="col-md-6 d-flex align-items-center">
             <div class="date-tile mr-3">
               <div class="text-uppercase">
-                <span class="text-sm">Apr</span><br /><strong class="text-lg"
-                  >18</strong
-                >
+                <span class="text-sm">{{ endDate[1] }}</span
+                ><br /><strong class="text-lg">{{ endDate[2] }}</strong>
               </div>
             </div>
-            <p class="text-sm mb-0">Thursday check-out<br />11AM</p>
+            <p class="text-sm mb-0">{{ endDate[0] }} check-out<br />11AM</p>
           </div>
         </div>
       </div>

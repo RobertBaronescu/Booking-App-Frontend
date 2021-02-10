@@ -9,6 +9,7 @@ import { RoomBookingComponent } from './components/room-booking/room-booking.com
 import { RoomAddReviewComponent } from './components/room-add-review/room-add-review.component';
 import { RoomReviewStarsComponent } from './components/room-review-stars/room-review-stars.component';
 import { CalculateRoomRatingComponent } from './components/calculate-room-rating/calculate-room-rating.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,11 +19,10 @@ import { CalculateRoomRatingComponent } from './components/calculate-room-rating
     RoomReviewsComponent,
     RoomBookingComponent,
     RoomAddReviewComponent,
-   
+
     RoomReviewStarsComponent,
     CalculateRoomRatingComponent,
-    
   ],
-  imports: [RoomsRoutingModule, SharedModule],
+  imports: [RoomsRoutingModule, SharedModule, FormsModule, ReactiveFormsModule],
 })
 export class RoomsModule {}

@@ -28,6 +28,6 @@ export class RoomSingleComponent implements OnInit {
   }
 
   onReviewAdd(review: Review) {
-    this.room.reviews.unshift(review);
+    this.room.reviews.push(review);
   }
 }

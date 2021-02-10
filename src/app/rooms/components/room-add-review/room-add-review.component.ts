@@ -5,12 +5,13 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
 import { Review } from 'src/app/core/interfaces/review.interface';
 import { User } from 'src/app/core/interfaces/user.interface';
 
 import { AuthService } from 'src/app/core/services/auth.service';
-import { ReviewServiceService } from 'src/app/core/services/review-service.service';
 import { RoomService } from 'src/app/core/services/room.service';
 import { UserService } from 'src/app/core/services/user.service';
 import { RoomReviewStarsComponent } from '../room-review-stars/room-review-stars.component';
@@ -27,6 +28,10 @@ export class RoomAddReviewComponent implements OnInit {
 
   characters: number = 1000;
   starRating!: number;
+  reviewDescriptionForm = new FormGroup({
+    description: new FormControl('', Validators.required),
+    rating: new FormControl('', Validators.required),
+  });
 
   decrementCharacters(event: any) {
     this.characters = 1000;
@@ -35,28 +40,28 @@ export class RoomAddReviewComponent implements OnInit {
   }
 
   onReviewStarHandle(starRating: number) {
-    this.starRating = starRating;
+    this.reviewDescriptionForm.get('rating')?.patchValue(starRating);
+    this.starRating = 0;
   }
 
-  postReview(text: string, event: any) {
-    event.preventDefault();
-
+  formSubmit() {
     const user = this.userService.currentUser$.getValue();
     const locationId = String(this.route.snapshot.paramMap.get('id'));
     const roomId = String(this.route.snapshot.paramMap.get('roomId'));
-
     const newReview = {
-      content: text,
+      content: this.reviewDescriptionForm.get('description')?.value,
       createdDate: Date.now(),
-      rating: this.starRating,
+      rating: this.reviewDescriptionForm.get('rating')?.value,
       userId: String(user?._id),
       author: user?.name,
       avatar: user?.picture,
     };
 
-    this.roomService.postReview(newReview, locationId, roomId).subscribe(() => {
-      this.addReviewEvent.emit(newReview);
-    });
+    this.addReviewEvent.emit(newReview);
+    this.roomService.postReview(newReview, locationId, roomId).subscribe();
+    this.reviewDescriptionForm.reset();
+    this.reviewDescriptionForm.get('rating')?.patchValue(this.starRating);
+    this.reviewStarsComponent.resetStars();
   }
 
   constructor(

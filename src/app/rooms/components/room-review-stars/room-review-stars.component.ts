@@ -7,6 +7,7 @@ import {
   ViewChild,
 } from '@angular/core';
 
+
 @Component({
   selector: 'app-room-review-stars',
   templateUrl: './room-review-stars.component.html',
@@ -18,7 +19,7 @@ export class RoomReviewStarsComponent implements OnInit {
   @Output() onStarsSelect: EventEmitter<number> = new EventEmitter<number>();
 
   stars = [1, 2, 3, 4, 5];
-  
+
   constructor() {}
 
   onStarInteract(starRating: number) {

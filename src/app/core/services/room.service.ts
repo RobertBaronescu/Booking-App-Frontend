@@ -9,6 +9,8 @@ import { Room } from '../interfaces/room.interface';
   providedIn: 'root',
 })
 export class RoomService {
+  bookingDetails = new BehaviorSubject<any>(null);
+
   constructor(private http: HttpClient, private route: ActivatedRoute) {}
 
   getRooms(): Observable<Room[]> {
