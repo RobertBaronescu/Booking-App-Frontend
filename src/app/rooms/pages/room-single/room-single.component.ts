@@ -12,6 +12,8 @@ import { RoomService } from 'src/app/core/services/room.service';
 })
 export class RoomSingleComponent implements OnInit {
   room!: Room;
+  firstPhoto!: string;
+  photos!: string[];
   constructor(
     private roomService: RoomService,
     private route: ActivatedRoute
@@ -19,15 +21,29 @@ export class RoomSingleComponent implements OnInit {
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('roomId');
-    const locationId = this.route.snapshot.paramMap.get('id');
-    this.roomService
-      .getRoom(String(id), String(locationId))
-      .subscribe((room) => {
-        this.room = room;
-      });
+    this.roomService.getRoom(String(id)).subscribe((room) => {
+      this.room = room;
+      this.firstPhoto = room.photos[0];
+      this.photos = room.photos.slice(1);
+    });
+  }
+
+  calculateAverageRating(): number {
+    const ratings = this.room.reviews.map(({ rating }) => Number(rating));
+    const ratingsSum = ratings.reduce((acc, current) => acc + current, 0);
+
+    return Number((ratingsSum / ratings.length).toFixed(2));
   }
 
   onReviewAdd(review: Review) {
-    this.room.reviews.push(review);
+    const id = this.route.snapshot.paramMap.get('roomId');
+    const locationId = this.route.snapshot.paramMap.get('id');
+    this.roomService
+      .postReview(review, String(locationId), String(id))
+      .subscribe(() => {
+        this.room.reviews.push(review);
+        const updatedRating = this.calculateAverageRating();
+        this.room.rating = updatedRating;
+      });
   }
 }

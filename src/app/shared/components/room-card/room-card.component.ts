@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { Room } from 'src/app/core/interfaces/room.interface';
@@ -12,20 +12,21 @@ import { RoomService } from 'src/app/core/services/room.service';
 export class RoomCardComponent implements OnInit {
   @Input() room!: Room;
 
-  constructor(
-    private router: Router,
-    private roomService: RoomService,
-    private route: ActivatedRoute
-  ) {}
+  @Input() isEditable: boolean = false;
+
+  @Output() editClick = new EventEmitter<string>();
+
+  @Output() navigateClick = new EventEmitter<string>();
+
+  constructor(private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit(): void {}
 
   navigateToRoom() {
-    const locationId = this.route.snapshot.paramMap.get('id');
-    this.router.navigate([`location/${locationId}/rooms/${this.room._id}`]);
-    
-    // this.roomService.getRoom(this.room.id).subscribe((room) => {
-    //   console.log(room);
-    // });
+    this.navigateClick.emit(this.room._id);
+  }
+
+  editEmit() {
+    this.editClick.emit(this.room._id);
   }
 }

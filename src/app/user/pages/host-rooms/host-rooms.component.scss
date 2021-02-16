@@ -1,0 +1,34 @@
+.your-rooms {
+  padding-bottom: 3rem !important;
+}
+
+.bg-cover {
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+.your-rooms-section {
+  height: 90vh;
+}
+
+.your-rooms-title {
+  color: #4e66f8;
+}
+
+.your-rooms-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.rooms-length {
+  font-size: larger;
+}
+
+.edit-room {
+  display: flex;
+  justify-content: flex-end;
+}
+
+

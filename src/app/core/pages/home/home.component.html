@@ -15,31 +15,23 @@
             <form
               autocomplete="off"
               class="row align-items-center"
-              method="get"
+              [formGroup]="locationForm"
+              (ngSubmit)="formSubmit()"
             >
-              <div class="col-12 col-lg-5">
+              <div class="col-12 col-lg-9">
                 <div class="form-group form-group-lg mb-lg-0 location-section">
-                  <span class="location-span">Location</span>
+                  <span class="location-span">Plan your next trip</span>
                   <kendo-autocomplete
                     [data]="listItems"
-                    [placeholder]="'e.g. Denmark'"
-                    class="countries"
+                    [placeholder]="'e.g. Paris'"
+                    class="cities"
+                    formControlName="location"
                   >
                   </kendo-autocomplete>
                 </div>
               </div>
-              <div class="col-12 col-lg-5">
-                <div
-                  class="input-group input-group-lg mb-3 mb-lg-0 date-section"
-                >
-                  <span class="date-span">Date</span>
-                  <kendo-datepicker
-                    class="date-picker"
-                    [(value)]="value"
-                  ></kendo-datepicker>
-                </div>
-              </div>
-              <div class="col-12 col-lg-2">
+
+              <div class="col-12 col-lg-3">
                 <button
                   class="btn btn-md btn-primary btn-block animate-up-2 find-a-desk-btn"
                   type="submit"
@@ -105,19 +97,21 @@
   <div class="container">
     <div class="row mb-3">
       <div class="col-md-8">
-        <p class="subtitle text-primary like-a-local-text">
-          Stay and eat like a local
-        </p>
+        <p class="subtitle text-primary like-a-local-text">Stay like a local</p>
         <h2 class="our-guides">Our guides</h2>
       </div>
       <div class="col-md-4 d-lg-flex align-items-center justify-content-end">
-        <a class="text-muted text-sm see-all-guides" href="">
-          See all guides<i class="fas fa-angle-double-right ml-2"></i
+        <a
+          class="text-muted text-sm see-all-guides"
+          routerLink="/location/list"
+        >
+          See all locations<i class="fas fa-angle-double-right ml-2"></i
         ></a>
       </div>
     </div>
-
-    <app-location></app-location>
+    <app-location-card
+      (locationsEmitter)="onLocationsEmit($event)"
+    ></app-location-card>
   </div>
 </section>
 <section class="hurry-up-section mb-5">

@@ -11,7 +11,7 @@
     <div class="card bg-white border p-4 mb-4 review-card">
       <div class="d-flex justify-content-between align-items-center mb-3">
         <div class="image-author d-flex flex-column">
-          <a routerLink="user/personal-info" class="h5 review-title">
+          <a routerLink="user/info" class="h5 review-title">
             <img [src]="review?.avatar" alt="" />
           </a>
 
@@ -42,7 +42,5 @@
       </p>
     </div>
   </div>
-  <app-room-add-review
-    (addReviewEvent)="onReviewAdd($event)"
-  ></app-room-add-review>
 </div>
+<room-add-review (addReviewEvent)="onReviewAdd($event)"></room-add-review>

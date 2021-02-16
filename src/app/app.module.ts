@@ -10,7 +10,6 @@ import { ApplicationFooterComponent } from './components/application-footer/appl
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './shared/authconfig.interceptor';
 import { ApplicationUserIconComponent } from './components/application-user-icon/application-user-icon.component';
-import { VisitorBookingsComponent } from './bookings/visitor-bookings/visitor-bookings.component';
 
 @NgModule({
   declarations: [
@@ -18,8 +17,6 @@ import { VisitorBookingsComponent } from './bookings/visitor-bookings/visitor-bo
     ApplicationHeaderComponent,
     ApplicationFooterComponent,
     ApplicationUserIconComponent,
-
-    VisitorBookingsComponent,
   ],
   imports: [
     BrowserModule,

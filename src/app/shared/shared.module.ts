@@ -6,9 +6,10 @@ import { LabelModule } from '@progress/kendo-angular-label';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
 import { RoomCardComponent } from './components/room-card/room-card.component';
+import { StarsComponent } from './stars/stars.component';
 
 @NgModule({
-  declarations: [RoomCardComponent],
+  declarations: [RoomCardComponent, StarsComponent],
   imports: [
     CommonModule,
     IntlModule,
@@ -25,6 +26,7 @@ import { RoomCardComponent } from './components/room-card/room-card.component';
     DateInputsModule,
     LabelModule,
     DropDownsModule,
+    StarsComponent,
   ],
 })
 export class SharedModule {

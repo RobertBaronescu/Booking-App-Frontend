@@ -1,5 +1,5 @@
 .carousel-pictures {
-  height: 450px;
+  height: 70vh;
 }
 
 .avatar {
@@ -13,4 +13,14 @@
 
 .icon {
   color: #e83e8c !important;
+}
+
+.reviews-number {
+  color: #4e66f8;
+}
+
+.carousel-photo {
+  object-fit: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }

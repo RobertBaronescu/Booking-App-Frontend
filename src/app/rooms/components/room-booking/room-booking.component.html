@@ -1,10 +1,10 @@
 <div class="p-4 shadow ml-lg-4 rounded sticky-top" style="top: 100px">
   <p class="text-muted">
-    <span class="text-primary h2 room-price">{{ room?.price }}</span> per night
+    <span class="text-primary h2 room-price">${{ room?.price }}</span> per night
   </p>
   <hr class="my-4" />
   <form
-    class="form"
+    class="form check-in-form"
     id="booking-form"
     method="get"
     action="#"
@@ -12,7 +12,7 @@
   >
     <div class="form-group">
       <div class="datepicker-container datepicker-container-right">
-        <label class="form-label" for="bookingDate">Check in</label>
+        <label class="form-label" for="bookingDate">Check in *</label>
         <kendo-datepicker
           id="bookingDate"
           class="date-picker"
@@ -20,7 +20,7 @@
           [disabledDates]="disabledDates"
         ></kendo-datepicker>
 
-        <label class="form-label mt-3" for="bookingEndDate">Check out</label>
+        <label class="form-label mt-3" for="bookingEndDate">Check out *</label>
 
         <kendo-datepicker
           id="bookingEndDate"
@@ -32,19 +32,26 @@
     </div>
     <div class="form-group mb-4">
       <label class="form-label" for="guests">Guests *</label>
-      <select class="form-control" name="guests" id="guests">
-        <option value="1">1 Guest</option>
-        <option value="2">2 Guests</option>
-        <option value="3">3 Guests</option>
-        <option value="4">4 Guests</option>
-        <option value="5">5 Guests</option>
-      </select>
+      <form [formGroup]="guestForm">
+        <select
+          class="form-control"
+          formControlName="guests"
+          name="guests"
+          id="guests"
+        >
+          <option *ngFor="let guest of guests" [ngValue]="guest">
+            {{ guest }}
+          </option>
+        </select>
+      </form>
     </div>
     <div class="form-group">
       <button
+        *ngIf="currentUser"
         class="btn btn-primary btn-block book-your-stay-btn"
         type="submit"
-        (click)='redirectToBooking()'
+        (click)="redirectToBooking()"
+        [disabled]="guestForm.get('guests')?.value === ''"
       >
         Book your stay
       </button>
@@ -54,10 +61,9 @@
   <hr class="my-4" />
   <div class="text-center">
     <div class="card border-light mt-4 p-3">
-      <h5 class="font-weight-normal">Property Owner</h5>
+      <h5 class="font-weight-normal text-left">Property Owner</h5>
       <div class="media d-flex align-items-center my-3">
         <a
-          href="./profile.html"
           class="avatar-lg mr-2"
           data-toggle="tooltip"
           data-placement="top"
@@ -66,7 +72,7 @@
           ><img
             class="img-fluid rounded-circle host-img"
             alt="avatar"
-            src="https://d19m59y37dris4.cloudfront.net/directory/1-6-1/img/avatar/avatar-10.jpg"
+            [src]="room?.hostPicture"
         /></a>
         <div class="avatar-name">
           <span
@@ -74,88 +80,8 @@
             data-toggle="tooltip"
             data-placement="top"
             data-original-title="More details"
-            >Jose Leos</span
+            >{{ room?.hostName }}</span
           >
-        </div>
-      </div>
-
-      <div
-        class="modal fade"
-        id="modal-form"
-        tabindex="-1"
-        role="dialog"
-        aria-labelledby="modal-form"
-        aria-hidden="true"
-      >
-        <div
-          class="modal-dialog modal-dialog-centered modal-md"
-          role="document"
-        >
-          <div class="modal-content">
-            <div class="modal-body p-0">
-              <div class="card shadow-md border-0">
-                <div class="card-body position-relative">
-                  <button
-                    type="button"
-                    class="close mb-2"
-                    data-dismiss="modal"
-                    aria-label="Close"
-                  >
-                    <span aria-hidden="true">×</span>
-                  </button>
-                  <form class="mt-3">
-                    <div class="form-group">
-                      <div class="input-group mb-4">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text"
-                            ><i class="far fa-user"></i
-                          ></span>
-                        </div>
-                        <input
-                          class="form-control"
-                          placeholder="Name"
-                          type="text"
-                          required=""
-                        />
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <div class="input-group mb-4">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text"
-                            ><i class="far fa-envelope"></i
-                          ></span>
-                        </div>
-                        <input
-                          class="form-control"
-                          placeholder="Email"
-                          type="email"
-                          required=""
-                        />
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <textarea
-                        class="form-control"
-                        placeholder="Write message"
-                        id="message-2"
-                        rows="4"
-                        required=""
-                      ></textarea>
-                    </div>
-                    <div class="text-center">
-                      <button
-                        type="submit"
-                        class="btn btn-block btn-primary mt-4"
-                      >
-                        Send Message
-                      </button>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>

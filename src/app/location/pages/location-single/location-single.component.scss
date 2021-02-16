@@ -1,0 +1,54 @@
+.badge-transparent {
+  color: #212529;
+  background: rgba(248, 249, 250, 0.9);
+  top: 2px;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+// .load-more-btn {
+//   background-color: #4e66f8;
+//   border: none;
+// }
+
+// .load-more-btn:hover {
+//   background-color: #314cfc;
+//   transition: all 0.3s ease-in-out;
+// }
+
+.location-cover {
+  height: 100vh;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.location-info {
+  position: absolute;
+  bottom: 0%;
+  left: 0%;
+}
+
+.three-section {
+  padding-bottom: 6rem !important;
+  padding-top: 6rem !important;
+}
+
+.advantage-number {
+  position: absolute;
+  top: -40px;
+  left: 20px;
+  width: 3rem;
+  text-align: center;
+  opacity: 0.5;
+  color: #4e66f8;
+  font-size: 90px;
+  font-weight: bold;
+  z-index: -1;
+}
+
+.text-uppercase {
+  font-weight: 900;
+}

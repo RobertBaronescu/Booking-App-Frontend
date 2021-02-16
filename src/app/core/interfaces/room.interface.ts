@@ -5,11 +5,16 @@ export interface Room {
   name: string;
   address: string;
   type: string;
-  smallDescription: string;
-  theSpace: string;
+  intro: string;
+  description: string;
   interactionWithGuests: string;
-  ameneties?: string;
+  ameneties?: string[];
   price: string;
-  image: string;
+  thumbnail: string;
   reviews: Review[];
+  reservations: any[];
+  rating: number;
+  hostName: string;
+  hostPicture: string;
+  photos: string[];
 }

@@ -6,15 +6,17 @@
         Booking placed <span class="text-muted float-right step-2">Step 2</span>
       </h1>
       <div class="text-block">
-        <p class="text-muted">Thank you for your booking, Ondrej.</p>
+        <p class="text-muted">
+          Thank you for your booking, {{ currentUser?.name }}.
+        </p>
         <p class="text-muted mb-5">
           Samsa was a travelling salesman - and above it there hung a picture
           that he had recently cut out of an illustrated magazine and housed in
           a nice, gilded frame.
         </p>
-        <p class="text-center mb-5">
-          <a class="btn btn-primary mx-2 mb-2" href="user-booking-detail.html">
-            <i class="far fa-file mr-2"></i>Finish booking</a
+        <p class="text-left mb-5">
+          <a class="btn btn-primary mx-2 mb-2" routerLink="/user/bookings">
+            <i class="far fa-file mr-2"></i>Go to bookings</a
           >
         </p>
         <p class="mb-5 text-center">

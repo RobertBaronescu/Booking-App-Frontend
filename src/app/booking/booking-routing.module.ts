@@ -5,15 +5,14 @@ import { BookingStartComponent } from './pages/booking-start/booking-start.compo
 import { BookingSuccessComponent } from './pages/booking-success/booking-success.component';
 
 const routes: Routes = [
+  { path: '', redirectTo: 'start', pathMatch: 'full' },
   {
     path: 'start',
     component: BookingStartComponent,
-    canActivate: [AuthGuard],
   },
   {
     path: 'success',
     component: BookingSuccessComponent,
-    canActivate: [AuthGuard],
   },
 ];
 

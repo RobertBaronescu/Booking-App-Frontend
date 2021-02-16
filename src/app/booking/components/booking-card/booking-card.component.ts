@@ -13,6 +13,9 @@ export class BookingCardComponent implements OnInit {
   endDate!: Date;
   numberOfDays!: number;
   totalPrice!: number;
+  guests!: string;
+  guestFee!: number;
+  initialPrice!: number;
 
   constructor(private roomService: RoomService) {}
 
@@ -22,9 +25,11 @@ export class BookingCardComponent implements OnInit {
       this.startDate = details.startDate;
       this.endDate = details.endDate;
       this.numberOfDays = details.numberOfDays;
-      this.totalPrice =
-        Number(this.room.price.split('').splice(1).join('')) *
-        this.numberOfDays;
+      this.guests = details.guests;
+      this.initialPrice = Number(this.room.price) * this.numberOfDays;
+      this.guestFee =
+        this.initialPrice * (((+this.guests.split(' ')[0] - 1) * 10) / 100);
+      this.totalPrice = this.guestFee + this.initialPrice;
     });
   }
 }

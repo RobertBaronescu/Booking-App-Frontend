@@ -17,22 +17,32 @@
           <div class="col-md-6 d-flex align-items-center mb-3 mb-md-0">
             <div class="date-tile mr-3">
               <div class="text-uppercase">
-                <span class="text-sm">{{ startDate[1] }}</span
-                ><br /><strong class="text-lg">{{ startDate[2] }}</strong>
+                <span class="text-sm">{{
+                  bookingDetails.startDate | moment: "MMM"
+                }}</span
+                ><br /><strong class="text-lg">{{
+                  bookingDetails.startDate | moment: "D"
+                }}</strong>
               </div>
             </div>
             <p class="text-sm mb-0">
-              {{ startDate[0] }} check-in<br />3PM - 7PM
+              {{ bookingDetails.startDate | moment: "dddd" }} check-in
             </p>
           </div>
           <div class="col-md-6 d-flex align-items-center">
             <div class="date-tile mr-3">
               <div class="text-uppercase">
-                <span class="text-sm">{{ endDate[1] }}</span
-                ><br /><strong class="text-lg">{{ endDate[2] }}</strong>
+                <span class="text-sm">{{
+                  bookingDetails.endDate | moment: "MMM"
+                }}</span
+                ><br /><strong class="text-lg">{{
+                  bookingDetails.endDate | moment: "D"
+                }}</strong>
               </div>
             </div>
-            <p class="text-sm mb-0">{{ endDate[0] }} check-out<br />11AM</p>
+            <p class="text-sm mb-0">
+              {{ bookingDetails.endDate | moment: "dddd" }} check-out
+            </p>
           </div>
         </div>
       </div>
@@ -93,8 +103,8 @@
       <div class="row form-block flex-column flex-sm-row">
         <div class="col text-center text-sm-left"></div>
         <div class="col text-center text-sm-right">
-          <a class="btn btn-primary px-3 mt-5" routerLink="/booking/success">
-            Next step<i class="fa-chevron-right fa ml-2"></i
+          <a class="btn btn-primary px-3 mt-5" (click)="finishBooking()">
+            Book<i class="fa-chevron-right fa ml-2"></i
           ></a>
         </div>
       </div>

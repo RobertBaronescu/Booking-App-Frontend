@@ -1,0 +1,32 @@
+<section
+  class="d-flex dark-overlay bg-cover your-rooms-section"
+  style="
+    background-image: url(https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1350&amp;q=80);
+  "
+>
+  <div class="container py-6 py-lg-7 text-white overlay-content d-flex">
+    <div class="col-xl-8 your-rooms-container">
+      <h1 class="display-3 font-weight-bold text-shadow">Your rooms</h1>
+    </div>
+  </div>
+</section>
+<div class="container mt-5 mb-5">
+  <span class="rooms-length"
+    ><strong>{{ rooms?.length }}</strong> results found</span
+  >
+</div>
+<div class="container-fluid">
+  <div class="row">
+    <div
+      class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 mb-5 hover-animate"
+      *ngFor="let room of rooms"
+    >
+      <app-room-card
+        [room]="room"
+        [isEditable]="true"
+        (editClick)="navigateToEditing($event)"
+        (click)="navigateToRoom(room?._id)"
+      ></app-room-card>
+    </div>
+  </div>
+</div>

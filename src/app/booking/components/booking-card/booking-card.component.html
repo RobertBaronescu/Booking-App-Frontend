@@ -17,19 +17,18 @@
             ><i class="fa fa-xs fa-star text-gray-200"></i>
           </div>
         </div>
-        <a href="detail-rooms.html"
           ><img
             class="ml-3 rounded room-image"
-            [src]="room?.image"
+            [src]="room?.thumbnail"
             alt=""
             width="100"
-        /></a>
+        />
       </div>
     </div>
     <div class="text-block py-3">
       <ul class="list-unstyled mb-0">
         <li class="mb-3">
-          <i class="fas fa-users fa-fw text-muted mr-2"></i>3 guests
+          <i class="fas fa-users fa-fw text-muted mr-2"></i>{{ guests }}
         </li>
         <li class="mb-0">
           <i class="far fa-calendar fa-fw text-muted mr-2"></i
@@ -46,10 +45,16 @@
             <th class="font-weight-normal py-2">
               {{ room?.price }} x {{ numberOfDays }} nights
             </th>
-            <td class="text-right py-2">${{ totalPrice }}</td>
+            <td class="text-right py-2">${{ initialPrice }}</td>
           </tr>
         </tbody>
         <tfoot>
+          <tr class="border-top">
+            <th class="font-weight-normal pt-3">
+              Guest Fee (10% for every extra guest)
+            </th>
+            <td class="text-right pt-3">${{ guestFee }}</td>
+          </tr>
           <tr class="border-top">
             <th class="pt-3">Total</th>
             <td class="font-weight-bold text-right pt-3">${{ totalPrice }}</td>
@@ -61,11 +66,9 @@
   <div class="card-footer bg-primary-light py-4 border-0">
     <div class="media align-items-center">
       <div class="media-body">
-        <h6 class="text-primary free-cancellation">
-          Flexible – free cancellation
-        </h6>
+        <h6 class="text-primary free-cancellation">Free cancellation</h6>
         <p class="text-sm text-primary opacity-8 mb-0 cancel">
-          Cancel within 48 hours to get a full refund.
+          Cancel anytime you desire.
         </p>
       </div>
     </div>

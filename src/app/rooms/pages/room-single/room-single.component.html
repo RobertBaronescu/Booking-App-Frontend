@@ -2,40 +2,10 @@
   <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">
       <div class="carousel-item active carousel-pictures">
-        <img
-          src="https://d19m59y37dris4.cloudfront.net/directory/1-6-1/img/photo/photo-1426122402199-be02db90eb90.jpg"
-          class="w-50"
-          alt="..."
-        />
-        <img
-          src="https://d19m59y37dris4.cloudfront.net/directory/1-6-1/img/photo/photo-1512917774080-9991f1c4c750.jpg"
-          class="w-50"
-          alt="..."
-        />
+        <img [src]="firstPhoto" class="w-100 carousel-photo" alt="..." />
       </div>
-      <div class="carousel-item carousel-pictures">
-        <img
-          src="https://d19m59y37dris4.cloudfront.net/directory/1-6-1/img/photo/photo-1494526585095-c41746248156.jpg"
-          class="w-50"
-          alt="..."
-        />
-        <img
-          src="https://d19m59y37dris4.cloudfront.net/directory/1-6-1/img/photo/photo-1488805990569-3c9e1d76d51c.jpg"
-          class="w-50"
-          alt="..."
-        />
-      </div>
-      <div class="carousel-item carousel-pictures">
-        <img
-          src="https://d19m59y37dris4.cloudfront.net/directory/1-6-1/img/photo/photo-1522771739844-6a9f6d5f14af.jpg"
-          class="w-50"
-          alt="..."
-        />
-        <img
-          src="https://d19m59y37dris4.cloudfront.net/directory/1-6-1/img/photo/photo-1484154218962-a197022b5858.jpg"
-          class="w-50"
-          alt="..."
-        />
+      <div class="carousel-item carousel-pictures" *ngFor="let photo of photos">
+        <img [src]="photo" class="w-100 carousel-photo" alt="..." />
       </div>
     </div>
     <a
@@ -66,27 +36,21 @@
           <i class="fa-map-marker-alt fa mr-1"></i> {{ room?.address }}
         </p>
         <h1>{{ room?.name }}</h1>
-        <p class="text-muted text-uppercase mb-4">{{ room?.type }}</p>
-        <ul class="list-inline text-sm mb-4">
-          <li class="list-inline-item mr-3">
-            <i class="fa fa-users mr-1 text-secondary icon"></i> 4 guests
-          </li>
-          <li class="list-inline-item mr-3">
-            <i class="fa fa-door-open mr-1 text-secondary icon"></i> 1 bedroom
-          </li>
-          <li class="list-inline-item mr-3">
-            <i class="fa fa-bed mr-1 text-secondary icon"></i> 3 beds
-          </li>
-          <li class="list-inline-item mr-3">
-            <i class="fa fa-bath mr-1 text-secondary icon"></i> 1 bath
-          </li>
-        </ul>
+        <div class="mb-5">
+          <span class="mr-2 text-muted"
+            >{{ room?.rating | number: "1.2-2" }} / 5</span
+          >
+          <app-stars [rating]="room?.rating"></app-stars>
+          <span class="ml-2 reviews-number"
+            >{{ room?.reviews?.length }} review(s)</span
+          >
+        </div>
         <p class="text-muted font-weight-light">
-          {{ room?.smallDescription }}
+          {{ room?.intro }}
         </p>
         <h6 class="mb-3 font-weight-bolder mt-5">The space</h6>
         <p class="text-muted font-weight-light">
-          {{ room?.theSpace }}
+          {{ room?.description }}
         </p>
         <p class="text-muted font-weight-light">Also in the apartment:</p>
         <ul class="text-muted font-weight-light">
@@ -176,6 +140,8 @@
         (reviewAddEvent)="onReviewAdd($event)"
       ></app-room-reviews>
     </div>
-    <div class="col-lg-4"><app-room-booking></app-room-booking></div>
+    <div class="col-lg-4">
+      <app-room-booking [room]="room"></app-room-booking>
+    </div>
   </div>
 </div>

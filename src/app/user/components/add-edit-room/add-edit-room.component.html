@@ -1,0 +1,322 @@
+<section class="py-5">
+  <div class="container">
+    <p class="subtitle text-primary add-new mb-5">Add new listing</p>
+    <form
+      [formGroup]="addRoomForm"
+      *ngIf="addRoomForm"
+      (ngSubmit)="formSubmit()"
+    >
+      <div class="row form-block mb-5">
+        <div class="col-lg-4">
+          <h4>Basic</h4>
+          <p class="text-muted text-sm">
+            His room, a proper human room although a little too small, lay
+            peacefully between its four familiar walls. A collection of textile
+            samples lay spread out on the table.
+          </p>
+        </div>
+        <div class="col-lg-7 ml-auto">
+          <div class="form-group">
+            <label class="form-label" for="form_name">Property name</label>
+            <input
+              formControlName="name"
+              class="form-control"
+              name="name"
+              id="form_name"
+            />
+            <div
+              class="alert alert-danger"
+              role="alert"
+              *ngIf="
+                addRoomForm.get('name')?.invalid &&
+                (addRoomForm.get('name')?.dirty ||
+                  addRoomForm.get('name')?.touched)
+              "
+            >
+              <div *ngIf="addRoomForm.get('name')?.errors?.required">
+                Room name is required.
+              </div>
+            </div>
+          </div>
+
+          <small class="form-text text-muted" id="propertyTypeHelp"
+            >One morning, when Gregor Samsa woke from troubled dreams, he found
+            himself transformed in his bed into a horrible vermin. He lay on his
+            armour-like back, and if he lifted his head a little he could see
+            his brown belly, slightly domed and divided by arches into stiff
+            sections</small
+          >
+        </div>
+      </div>
+      <div class="row form-block mb-5">
+        <div class="col-lg-4">
+          <h4>Location</h4>
+          <p class="text-muted text-sm">
+            Samsa was a travelling salesman - and above it there hung a picture
+            that he had recently cut out of an illustrated magazine and housed
+            in a nice, gilded frame.
+          </p>
+        </div>
+        <div class="col-lg-7 ml-auto">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label class="form-label" for="form_city">City</label>
+                <select
+                  name="city"
+                  id="form_city"
+                  class="form-control"
+                  formControlName="address"
+                >
+                  <option
+                    [value]="location?.name"
+                    *ngFor="let location of locations"
+                  >
+                    {{ location?.name }}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row form-block mb-5">
+        <div class="col-lg-4">
+          <h4>Description</h4>
+          <p class="text-muted text-sm">
+            Samsa was a travelling salesman - and above it there hung a picture
+            that he had recently cut out of an illustrated magazine and housed
+            in a nice, gilded frame.
+          </p>
+        </div>
+        <div class="col-lg-7 ml-auto">
+          <div class="form-group mb-5">
+            <label class="form-label" for="form_description"
+              >Describe your place to guests</label
+            >
+            <textarea
+              class="form-control"
+              name="name"
+              id="form_description"
+              rows="5"
+              aria-describedby="descriptionHelp"
+              formControlName="intro"
+            ></textarea>
+            <div
+              class="alert alert-danger"
+              role="alert"
+              *ngIf="
+                addRoomForm.get('intro')?.invalid &&
+                (addRoomForm.get('intro')?.dirty ||
+                  addRoomForm.get('intro')?.touched)
+              "
+            >
+              <div *ngIf="addRoomForm.get('intro')?.errors?.required">
+                Intro description is required.
+              </div>
+            </div>
+          </div>
+          <div class="form-group mb-5">
+            <label class="form-label" for="form_availability"
+              >Describe the space</label
+            >
+            <textarea
+              class="form-control"
+              name="name"
+              id="form_availability"
+              rows="3"
+              aria-describedby="availabilityHelp"
+              formControlName="description"
+            ></textarea>
+            <div
+              class="alert alert-danger"
+              role="alert"
+              *ngIf="
+                addRoomForm.get('description')?.invalid &&
+                (addRoomForm.get('description')?.dirty ||
+                  addRoomForm.get('description')?.touched)
+              "
+            >
+              <div *ngIf="addRoomForm.get('description')?.errors?.required">
+                Description of the space is required.
+              </div>
+            </div>
+          </div>
+          <div class="form-group mb-5">
+            <label class="form-label" for="form_neighbourhood"
+              >Your interaction with the guests</label
+            >
+            <textarea
+              class="form-control"
+              name="name"
+              id="form_neighbourhood"
+              rows="3"
+              aria-describedby="hoodHelp"
+              formControlName="interactionWithGuests"
+            ></textarea>
+            <div
+              class="alert alert-danger"
+              role="alert"
+              *ngIf="
+                addRoomForm.get('interactionWithGuests')?.invalid &&
+                (addRoomForm.get('interactionWithGuests')?.dirty ||
+                  addRoomForm.get('interactionWithGuests')?.touched)
+              "
+            >
+              <div
+                *ngIf="
+                  addRoomForm.get('interactionWithGuests')?.errors?.required
+                "
+              >
+                Description of your interaction with the guests is required.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row form-block mb-5">
+        <div class="col-lg-4">
+          <h4>Room price</h4>
+          <p class="text-muted text-sm">
+            His room, a proper human room although a little too small, lay
+            peacefully between its four familiar walls. A collection of textile
+            samples lay spread out on the table.
+          </p>
+        </div>
+        <div class="col-lg-7 ml-auto">
+          <div class="form-group">
+            <label class="form-label" for="room-price"
+              >Room price per night</label
+            >
+            <input
+              formControlName="price"
+              class="form-control"
+              name="price"
+              id="room-price"
+              type="number"
+            />
+            <div
+              class="alert alert-danger"
+              role="alert"
+              *ngIf="
+                addRoomForm.get('price')?.invalid &&
+                (addRoomForm.get('price')?.dirty ||
+                  addRoomForm.get('price')?.touched)
+              "
+            >
+              <div *ngIf="addRoomForm.get('price')?.errors?.required">
+                Room price is required.
+              </div>
+            </div>
+          </div>
+
+          <small class="form-text text-muted" id="propertyTypeHelp"
+            >One morning, when Gregor Samsa woke from troubled dreams, he found
+            himself transformed in his bed into a horrible vermin. He lay on his
+            armour-like back, and if he lifted his head a little he could see
+            his brown belly, slightly domed and divided by arches into stiff
+            sections</small
+          >
+        </div>
+      </div>
+
+      <div class="row form-block mb-5">
+        <div class="col-lg-4">
+          <h4>Image upload</h4>
+          <p class="text-muted text-sm">
+            His room, a proper human room although a little too small, lay
+            peacefully between its four familiar walls. A collection of textile
+            samples lay spread out on the table.
+          </p>
+        </div>
+        <div class="col-lg-7 ml-auto">
+          <div class="form-group">
+            <ngx-dropzone
+              (change)="onThumbnailSelect($event)"
+              [multiple]="false"
+            >
+              <ngx-dropzone-label
+                >Upload your thumbnail image!</ngx-dropzone-label
+              >
+              <ngx-dropzone-image-preview
+                ngProjectAs="ngx-dropzone-preview"
+                *ngFor="let f of thumbnailFiles"
+                [file]="f"
+                [removable]="true"
+                (removed)="onThumbnailRemove(f)"
+              >
+              </ngx-dropzone-image-preview>
+            </ngx-dropzone>
+            <div
+              class="alert alert-danger"
+              role="alert"
+              *ngIf="
+                addRoomForm.get('image')?.invalid &&
+                (addRoomForm.get('image')?.dirty ||
+                  addRoomForm.get('image')?.touched)
+              "
+            >
+              <div *ngIf="addRoomForm.get('image')?.errors?.required">
+                Room image is required.
+              </div>
+            </div>
+          </div>
+
+          <small class="form-text text-muted" id="propertyTypeHelp"
+            >One morning, when Gregor Samsa woke from troubled dreams, he found
+            himself transformed in his bed into a horrible vermin. He lay on his
+            armour-like back, and if he lifted his head a little he could see
+            his brown belly, slightly domed and divided by arches into stiff
+            sections</small
+          >
+        </div>
+      </div>
+
+      <div class="row form-block mb-5">
+        <div class="col-lg-4">
+          <h4>Photos</h4>
+          <p class="text-muted text-sm">
+            His room, a proper human room although a little too small, lay
+            peacefully between its four familiar walls. A collection of textile
+            samples lay spread out on the table.
+          </p>
+        </div>
+        <div class="col-lg-7 ml-auto">
+          <div class="form-group">
+            <ngx-dropzone (change)="onSelect($event)">
+              <ngx-dropzone-label>Upload your images!</ngx-dropzone-label>
+              <ngx-dropzone-image-preview
+                ngProjectAs="ngx-dropzone-preview"
+                *ngFor="let f of files"
+                [file]="f"
+                [removable]="true"
+                (removed)="onRemove(f)"
+              >
+              </ngx-dropzone-image-preview>
+            </ngx-dropzone>
+          </div>
+        </div>
+      </div>
+      <div class="row form-block flex-column flex-sm-row final-form-block">
+        <div class="col text-center text-sm-left">
+          <a
+            class="btn btn-link text-muted"
+            routerLink="/user/add-room-first-step"
+          >
+            <i class="fa-chevron-left fa mr-2"></i>Back</a
+          >
+        </div>
+        <div class="col text-center text-sm-right">
+          <button
+            type="submit"
+            class="btn btn-primary px-3 finish-btn"
+            [disabled]="!addRoomForm.valid"
+          >
+            Finish<i class="fa-chevron-right fa ml-2"></i>
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
