@@ -18,7 +18,9 @@ export class RoomCardComponent implements OnInit {
 
   @Output() navigateClick = new EventEmitter<string>();
 
-  constructor(private router: Router, private route: ActivatedRoute) {}
+  @Output() deleteClick = new EventEmitter<string>();
+
+  constructor() {}
 
   ngOnInit(): void {}
 
@@ -28,5 +30,9 @@ export class RoomCardComponent implements OnInit {
 
   editEmit() {
     this.editClick.emit(this.room._id);
+  }
+
+  deleteEmit() {
+    this.deleteClick.emit(this.room._id);
   }
 }

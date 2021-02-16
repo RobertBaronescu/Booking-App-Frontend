@@ -25,7 +25,8 @@
         [room]="room"
         [isEditable]="true"
         (editClick)="navigateToEditing($event)"
-        (click)="navigateToRoom(room?._id)"
+        (navigateClick)="navigateToRoom($event)"
+        (deleteClick)="deleteRoom($event)"
       ></app-room-card>
     </div>
   </div>

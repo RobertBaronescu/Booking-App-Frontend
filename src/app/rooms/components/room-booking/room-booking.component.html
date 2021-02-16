@@ -3,12 +3,19 @@
     <span class="text-primary h2 room-price">${{ room?.price }}</span> per night
   </p>
   <hr class="my-4" />
-  <form
+  <div
+    *ngIf="currentUser?._id === room?.hostId"
+    class="py-2"
+    (click)="redirectToEditRoom()"
+  >
+    <i class="fas fa-edit edit-room"></i>
+    <span class="ml-1 edit-room-text">Edit your room</span>
+  </div>
+
+  <div
     class="form check-in-form"
     id="booking-form"
-    method="get"
-    action="#"
-    autocomplete="off"
+    *ngIf="currentUser?._id !== room?.hostId"
   >
     <div class="form-group">
       <div class="datepicker-container datepicker-container-right">
@@ -56,31 +63,23 @@
         Book your stay
       </button>
     </div>
-  </form>
+  </div>
 
   <hr class="my-4" />
   <div class="text-center">
-    <div class="card border-light mt-4 p-3">
+    <div class="card border-light mt-4 py-2">
       <h5 class="font-weight-normal text-left">Property Owner</h5>
       <div class="media d-flex align-items-center my-3">
-        <a
-          class="avatar-lg mr-2"
-          data-toggle="tooltip"
-          data-placement="top"
-          title=""
-          data-original-title="More details"
+        <a class="avatar-lg mr-2" title=""
           ><img
             class="img-fluid rounded-circle host-img"
             alt="avatar"
             [src]="room?.hostPicture"
         /></a>
         <div class="avatar-name">
-          <span
-            class="host-name"
-            data-toggle="tooltip"
-            data-placement="top"
-            data-original-title="More details"
-            >{{ room?.hostName }}</span
+          <span class="host-name">{{ room?.hostName }}</span>
+          <span *ngIf="currentUser?._id === room?.hostId" class="ml-1"
+            >(You)</span
           >
         </div>
       </div>

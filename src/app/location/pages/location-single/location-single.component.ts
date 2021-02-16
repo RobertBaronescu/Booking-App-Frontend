@@ -32,7 +32,6 @@ export class LocationSingleComponent implements OnInit {
   }
 
   redirectToRoom(roomId: string) {
-    const locationId = this.route.snapshot.paramMap.get('id');
-    this.router.navigate([`location/${locationId}/rooms/${roomId}`]);
+    this.router.navigate([`/room/${roomId}`]);
   }
 }

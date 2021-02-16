@@ -8,7 +8,7 @@ export interface Room {
   intro: string;
   description: string;
   interactionWithGuests: string;
-  ameneties?: string[];
+  amenities?: string[];
   price: string;
   thumbnail: string;
   reviews: Review[];
@@ -16,5 +16,6 @@ export interface Room {
   rating: number;
   hostName: string;
   hostPicture: string;
+  hostId?: string;
   photos: string[];
 }

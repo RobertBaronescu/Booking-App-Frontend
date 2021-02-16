@@ -76,59 +76,18 @@
       <div class="text-block mt-5">
         <h4 class="mb-4">Amenities</h4>
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-4 col-lg-4 col-xl-4 col-sm-4">
             <ul class="list-unstyled text-muted">
-              <li class="mb-2">
+              <li
+                class="mb-2 d-flex justify-content-between"
+                *ngFor="let amenity of amenities"
+              >
                 <i
-                  class="fa fa-wifi text-secondary w-1rem mr-3 text-center icon"
+                  class="fa fa-{{
+                    amenity?.icon
+                  }} text-secondary w-1rem mr-3 text-center icon"
                 ></i
-                ><span class="text-sm">Wifi</span>
-              </li>
-              <li class="mb-2">
-                <i
-                  class="fa fa-tv text-secondary w-1rem mr-3 text-center icon"
-                ></i
-                ><span class="text-sm">Cable TV</span>
-              </li>
-              <li class="mb-2">
-                <i
-                  class="fa fa-snowflake text-secondary w-1rem mr-3 text-center icon"
-                ></i
-                ><span class="text-sm">Air conditioning</span>
-              </li>
-              <li class="mb-2">
-                <i
-                  class="fa fa-thermometer-three-quarters text-secondary w-1rem mr-3 text-center icon"
-                ></i
-                ><span class="text-sm">Heating</span>
-              </li>
-            </ul>
-          </div>
-          <div class="col-md-6">
-            <ul class="list-unstyled text-muted">
-              <li class="mb-2">
-                <i
-                  class="fa fa-bath text-secondary w-1rem mr-3 text-center icon"
-                ></i
-                ><span class="text-sm">Toiletteries</span>
-              </li>
-              <li class="mb-2">
-                <i
-                  class="fa fa-utensils text-secondary w-1rem mr-3 text-center icon"
-                ></i
-                ><span class="text-sm">Equipped Kitchen</span>
-              </li>
-              <li class="mb-2">
-                <i
-                  class="fa fa-laptop text-secondary w-1rem mr-3 text-center icon"
-                ></i
-                ><span class="text-sm">Desk for work</span>
-              </li>
-              <li class="mb-2">
-                <i
-                  class="fa fa-tshirt text-secondary w-1rem mr-3 text-center icon"
-                ></i
-                ><span class="text-sm">Washing machine</span>
+                ><span class="text-sm">{{ amenity?.name }}</span>
               </li>
             </ul>
           </div>

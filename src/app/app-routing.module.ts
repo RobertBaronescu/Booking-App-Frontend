@@ -20,6 +20,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./location/location.module').then((m) => m.LocationModule),
   },
+  {
+    path: 'room',
+    loadChildren: () =>
+      import('./rooms/rooms.module').then((m) => m.RoomsModule),
+  },
 
   {
     path: 'booking',

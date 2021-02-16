@@ -15,8 +15,7 @@ export class HostRoomsComponent implements OnInit {
   constructor(
     private roomService: RoomService,
     private userService: UserService,
-    private router: Router,
-    private locationService: LocationService
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -27,15 +26,19 @@ export class HostRoomsComponent implements OnInit {
       });
   }
 
-  navigateToRoom(roomId: string | undefined) {
-    this.locationService
-      .getLocationByRoomId(String(roomId))
-      .subscribe((locationId: string) => {
-        this.router.navigate([`location/${locationId}/rooms/${roomId}`]);
-      });
+  navigateToRoom(roomId: string) {
+    this.router.navigate([`/room/${roomId}`]);
   }
 
   navigateToEditing(id: string) {
     this.router.navigate([`/user/room/edit/${id}`]);
+  }
+
+  deleteRoom(roomId: string) {
+    this.roomService.deleteRoom(roomId).subscribe(() => {
+      this.rooms = this.rooms.filter((room) => {
+        return room._id !== roomId;
+      });
+    });
   }
 }

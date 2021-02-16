@@ -10,11 +10,7 @@ const routes: Routes = [
     path: ':id',
     component: LocationSingleComponent,
   },
-  {
-    path: ':id/rooms',
-    loadChildren: () =>
-      import('../rooms/rooms.module').then((m) => m.RoomsModule),
-  },
+
 ];
 
 @NgModule({

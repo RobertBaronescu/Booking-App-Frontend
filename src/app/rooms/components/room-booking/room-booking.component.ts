@@ -56,6 +56,10 @@ export class RoomBookingComponent implements OnInit, OnDestroy {
       });
   }
 
+  redirectToEditRoom() {
+    this.router.navigate([`user/room/edit/${this.room._id}`]);
+  }
+
   disabledDates(date: Date): boolean {
     // return (
     //   date < new Date(Date.now()) &&

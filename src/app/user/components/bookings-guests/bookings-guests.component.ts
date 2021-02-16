@@ -11,24 +11,23 @@ import { UserService } from 'src/app/core/services/user.service';
 export class BookingsGuestsComponent implements OnInit {
   @Input() set isHost(value: boolean) {
     this._isHost = value;
-    if (this._isHost) {
-      this.userService.currentUser$.subscribe((user) => {
+    this.userService.currentUser$.subscribe((user) => {
+      this.user = user;
+      
+      if (this._isHost) {
         this.userService
           .getBookingsByHost(user?._id)
           .subscribe((data: BookingGuests[]) => {
             this.bookings = data;
           });
-      });
-    } else {
-      this.userService.currentUser$.subscribe((user) => {
-        this.user = user;
+      } else {
         this.userService
           .getBookings(this.user?._id)
           .subscribe((bookings: BookingGuests[] | any) => {
             this.bookings = bookings;
           });
-      });
-    }
+      }
+    });
   }
 
   bookings!: BookingGuests[];

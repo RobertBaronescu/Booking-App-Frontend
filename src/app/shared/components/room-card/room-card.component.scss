@@ -34,11 +34,12 @@ img {
   color: #4e66f8 !important;
 }
 
-.edit-room {
+.edit-room,
+.delete-room {
   color: #4e66f8;
   cursor: pointer;
   transition: 0.3s all ease-in-out;
-  
+
   &:hover {
     transform: scale(1.1);
   }

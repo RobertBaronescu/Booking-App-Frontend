@@ -14,6 +14,7 @@ export class RoomSingleComponent implements OnInit {
   room!: Room;
   firstPhoto!: string;
   photos!: string[];
+  amenities: any = [];
   constructor(
     private roomService: RoomService,
     private route: ActivatedRoute
@@ -25,6 +26,13 @@ export class RoomSingleComponent implements OnInit {
       this.room = room;
       this.firstPhoto = room.photos[0];
       this.photos = room.photos.slice(1);
+
+      this.roomService.amenities?.forEach((amenity) => {
+        if (room.amenities!.some((e) => e === amenity.name)) {
+          this.amenities?.push(amenity);
+        }
+      });
+   
     });
   }
 
@@ -37,13 +45,10 @@ export class RoomSingleComponent implements OnInit {
 
   onReviewAdd(review: Review) {
     const id = this.route.snapshot.paramMap.get('roomId');
-    const locationId = this.route.snapshot.paramMap.get('id');
-    this.roomService
-      .postReview(review, String(locationId), String(id))
-      .subscribe(() => {
-        this.room.reviews.push(review);
-        const updatedRating = this.calculateAverageRating();
-        this.room.rating = updatedRating;
-      });
+    this.roomService.postReview(review, String(id)).subscribe(() => {
+      this.room.reviews.push(review);
+      const updatedRating = this.calculateAverageRating();
+      this.room.rating = updatedRating;
+    });
   }
 }

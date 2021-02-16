@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Room } from 'src/app/core/interfaces/room.interface';
 import { LocationService } from 'src/app/core/services/location.service';
 import { RoomService } from 'src/app/core/services/room.service';
 import { UserService } from 'src/app/core/services/user.service';
@@ -33,10 +32,11 @@ export class AddEditRoomComponent implements OnInit {
   _isEditing!: boolean;
   files: File[] = [];
   thumbnailFiles: File[] = [];
+  currentRoomAmenities: string[] = [];
 
   constructor(
     private locationService: LocationService,
-    private roomService: RoomService,
+    public roomService: RoomService,
     private route: ActivatedRoute,
     private userService: UserService,
     private router: Router
@@ -54,6 +54,7 @@ export class AddEditRoomComponent implements OnInit {
       name: new FormControl('', Validators.required),
       address: new FormControl('', Validators.required),
       intro: new FormControl('', Validators.required),
+      amenities: new FormControl([]),
       description: new FormControl('', Validators.required),
       interactionWithGuests: new FormControl('', Validators.required),
       price: new FormControl(null, Validators.required),
@@ -167,5 +168,10 @@ export class AddEditRoomComponent implements OnInit {
     });
 
     filesArray.push(imageAsFile);
+  }
+
+  addAmenity(amenity: string) {
+    this.currentRoomAmenities.push(amenity);
+    this.addRoomForm.patchValue({ amenities: this.currentRoomAmenities });
   }
 }
