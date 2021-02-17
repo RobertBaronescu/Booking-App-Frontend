@@ -1,6 +1,14 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormArray,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Amenity } from 'src/app/core/interfaces/amenity.interface';
 import { LocationService } from 'src/app/core/services/location.service';
 import { RoomService } from 'src/app/core/services/room.service';
 import { UserService } from 'src/app/core/services/user.service';
@@ -18,7 +26,7 @@ export class AddEditRoomComponent implements OnInit {
 
       this.roomService.getRoom(String(id)).subscribe((room) => {
         this.addRoomForm.patchValue(room);
-
+        this.fillAmenitiesCheckboxesOnEdit(room.amenities);
         room.photos.forEach((photo) => {
           this.convertBase64ToArrayBuffer(photo, this.files);
         });
@@ -32,14 +40,15 @@ export class AddEditRoomComponent implements OnInit {
   _isEditing!: boolean;
   files: File[] = [];
   thumbnailFiles: File[] = [];
-  currentRoomAmenities: string[] = [];
+  defaultAmenities: Amenity[] = [...this.roomService.amenities];
 
   constructor(
     private locationService: LocationService,
     public roomService: RoomService,
     private route: ActivatedRoute,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private formBuilder: FormBuilder
   ) {
     this.locationService.getLocations().subscribe((locations) => {
       this.locations = [...locations];
@@ -50,16 +59,43 @@ export class AddEditRoomComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.addRoomForm = new FormGroup({
-      name: new FormControl('', Validators.required),
-      address: new FormControl('', Validators.required),
-      intro: new FormControl('', Validators.required),
-      amenities: new FormControl([]),
-      description: new FormControl('', Validators.required),
-      interactionWithGuests: new FormControl('', Validators.required),
-      price: new FormControl(null, Validators.required),
-      thumbnail: new FormControl('', Validators.required),
-      photos: new FormControl([]),
+    this.addRoomForm = this.formBuilder.group({
+      name: ['', Validators.required],
+      address: ['', Validators.required],
+      intro: ['', Validators.required],
+      amenities: new FormArray(
+        [],
+        [this.minSelectedCheckboxes(1), Validators.required]
+      ),
+      description: ['', Validators.required],
+      interactionWithGuests: ['', Validators.required],
+      price: [null, Validators.required],
+      thumbnail: ['', Validators.required],
+      photos: [[]],
+    });
+
+    if (!this._isEditing) {
+      this.fillAmenitiesCheckboxesOnAdd();
+    }
+  }
+
+  get amentiesFormArray() {
+    return this.addRoomForm.controls.amenities as FormArray;
+  }
+
+  fillAmenitiesCheckboxesOnAdd() {
+    this.roomService.amenities.forEach(() =>
+      this.amentiesFormArray.push(new FormControl(false))
+    );
+  }
+
+  fillAmenitiesCheckboxesOnEdit(amenitiesFromBackend: Amenity[]) {
+    this.roomService.amenities.forEach((amenity) => {
+      const isChecked = amenitiesFromBackend.some(
+        (e) => e.name === amenity.name
+      );
+
+      this.amentiesFormArray.push(new FormControl(isChecked));
     });
   }
 
@@ -71,22 +107,29 @@ export class AddEditRoomComponent implements OnInit {
 
     reader.onload = () => {
       this.addRoomForm.patchValue({ thumbnail: reader.result as string });
-      this.addRoomForm?.get('thumbnail')?.updateValueAndValidity();
+      this.addRoomForm?.controls.thumbnail?.updateValueAndValidity();
     };
 
     reader.readAsDataURL(this.thumbnailFiles[0]);
   }
 
   formSubmit() {
+    const selectedAmenties = this.addRoomForm.value.amenities
+      .map((checkboxForAmenity: boolean, i: number) =>
+        checkboxForAmenity ? this.defaultAmenities[i] : null
+      )
+      .filter((v: boolean | null) => v !== null);
+
     let foundLocation = { _id: undefined };
     Array.from(this.locations).forEach((element: any) => {
-      if (element.name === this.addRoomForm.get('address')?.value) {
+      if (element.name === this.addRoomForm.controls.address.value) {
         foundLocation = element;
       }
     });
     if (!this._isEditing) {
       const room = {
         ...this.addRoomForm.value,
+        amenities: selectedAmenties,
         rating: 0,
         hostId: this.userService.currentUser$.getValue()?._id,
         locationId: foundLocation._id,
@@ -98,6 +141,7 @@ export class AddEditRoomComponent implements OnInit {
       const id = this.route.snapshot.paramMap.get('roomId');
       const room = {
         ...this.addRoomForm.value,
+        amenities: selectedAmenties,
         rating: 0,
         hostId: this.userService.currentUser$.getValue()?._id,
         locationId: foundLocation._id,
@@ -118,7 +162,7 @@ export class AddEditRoomComponent implements OnInit {
       reader.onload = () => {
         photoResults.push(String(reader.result));
 
-        this.addRoomForm.get('photos')?.updateValueAndValidity;
+        this.addRoomForm.controls.photos?.updateValueAndValidity;
       };
       reader.readAsDataURL(file);
     });
@@ -135,7 +179,7 @@ export class AddEditRoomComponent implements OnInit {
       reader.onload = () => {
         photoResults.push(String(reader.result));
 
-        this.addRoomForm.get('photos')?.updateValueAndValidity;
+        this.addRoomForm.controls.photos?.updateValueAndValidity;
       };
       reader.readAsDataURL(file);
     });
@@ -170,8 +214,15 @@ export class AddEditRoomComponent implements OnInit {
     filesArray.push(imageAsFile);
   }
 
-  addAmenity(amenity: string) {
-    this.currentRoomAmenities.push(amenity);
-    this.addRoomForm.patchValue({ amenities: this.currentRoomAmenities });
+  minSelectedCheckboxes(min = 1) {
+    const validator: ValidatorFn | any = (formArray: FormArray) => {
+      const totalSelected = formArray.controls
+        .map((control) => control.value)
+        .reduce((prev, next) => (next ? prev + next : prev), 0);
+
+      return totalSelected >= min ? null : { required: true };
+    };
+
+    return validator;
   }
 }

@@ -23,8 +23,12 @@
         <kendo-datepicker
           id="bookingDate"
           class="date-picker"
-          [(value)]="startDate"
-          [disabledDates]="disabledDates"
+          [value]="checkInDate"
+          [disabledDates]="disabledCheckInDates"
+          [min]="minDate"
+          [max]="maxDate"
+          [format]="'dd/MMM/yyyy'"
+          (valueChange)="onCheckInDateChange($event)"
         ></kendo-datepicker>
 
         <label class="form-label mt-3" for="bookingEndDate">Check out *</label>
@@ -32,8 +36,12 @@
         <kendo-datepicker
           id="bookingEndDate"
           class="date-picker"
-          [(value)]="endDate"
-          [disabledDates]="disabledDates"
+          [(value)]="checkOutDate"
+          [disabledDates]="disabledCheckOutDates"
+          [min]="minDate"
+          [max]="maxDate"
+          [disabled]="!checkInDate"
+          [format]="'dd/MMM/yyyy'"
         ></kendo-datepicker>
       </div>
     </div>

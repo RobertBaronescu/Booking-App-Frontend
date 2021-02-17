@@ -1,5 +1,6 @@
 .carousel-pictures {
-  height: 70vh;
+  height: 650px;
+  // height: min-content;
 }
 
 .avatar {
@@ -23,4 +24,5 @@
   object-fit: cover;
   background-position: center;
   background-repeat: no-repeat;
+  margin: auto;
 }

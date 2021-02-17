@@ -28,7 +28,7 @@ export class RoomSingleComponent implements OnInit {
       this.photos = room.photos.slice(1);
 
       this.roomService.amenities?.forEach((amenity) => {
-        if (room.amenities!.some((e) => e === amenity.name)) {
+        if (room.amenities!.some((e) => e.name === amenity.name)) {
           this.amenities?.push(amenity);
         }
       });

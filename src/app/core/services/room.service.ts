@@ -28,7 +28,7 @@ export class RoomService {
     { name: 'Washing machine', icon: 'tshirt' },
   ];
 
-  constructor(private http: HttpClient, private route: ActivatedRoute) {}
+  constructor(private http: HttpClient) {}
 
   getRooms(): Observable<Room[]> {
     return this.http.get<Room[]>('http://localhost:3000/rooms');
@@ -71,7 +71,11 @@ export class RoomService {
       headers: headers,
     };
 
-    return this.http.post('http://localhost:3000/add-room', room, httpOptions);
+    return this.http.post(
+      'http://localhost:3000/rooms/add-room',
+      room,
+      httpOptions
+    );
   }
 
   deleteRoom(roomId: string) {

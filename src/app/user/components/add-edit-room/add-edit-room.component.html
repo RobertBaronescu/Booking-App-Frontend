@@ -28,12 +28,12 @@
               class="alert alert-danger"
               role="alert"
               *ngIf="
-                addRoomForm.get('name')?.invalid &&
-                (addRoomForm.get('name')?.dirty ||
-                  addRoomForm.get('name')?.touched)
+                addRoomForm.controls.name?.invalid &&
+                (addRoomForm.controls.name?.dirty ||
+                  addRoomForm.controls.name?.touched)
               "
             >
-              <div *ngIf="addRoomForm.get('name')?.errors?.required">
+              <div *ngIf="addRoomForm.controls.name?.errors?.required">
                 Room name is required.
               </div>
             </div>
@@ -106,12 +106,12 @@
               class="alert alert-danger"
               role="alert"
               *ngIf="
-                addRoomForm.get('intro')?.invalid &&
-                (addRoomForm.get('intro')?.dirty ||
-                  addRoomForm.get('intro')?.touched)
+                addRoomForm.controls.intro?.invalid &&
+                (addRoomForm.controls.intro?.dirty ||
+                  addRoomForm.controls.intro?.touched)
               "
             >
-              <div *ngIf="addRoomForm.get('intro')?.errors?.required">
+              <div *ngIf="addRoomForm.controls.intro?.errors?.required">
                 Intro description is required.
               </div>
             </div>
@@ -132,12 +132,12 @@
               class="alert alert-danger"
               role="alert"
               *ngIf="
-                addRoomForm.get('description')?.invalid &&
-                (addRoomForm.get('description')?.dirty ||
-                  addRoomForm.get('description')?.touched)
+                addRoomForm.controls.description?.invalid &&
+                (addRoomForm.controls.description?.dirty ||
+                  addRoomForm.controls.description?.touched)
               "
             >
-              <div *ngIf="addRoomForm.get('description')?.errors?.required">
+              <div *ngIf="addRoomForm.controls.description?.errors?.required">
                 Description of the space is required.
               </div>
             </div>
@@ -158,14 +158,14 @@
               class="alert alert-danger"
               role="alert"
               *ngIf="
-                addRoomForm.get('interactionWithGuests')?.invalid &&
-                (addRoomForm.get('interactionWithGuests')?.dirty ||
-                  addRoomForm.get('interactionWithGuests')?.touched)
+                addRoomForm.controls.interactionWithGuests?.invalid &&
+                (addRoomForm.controls.interactionWithGuests?.dirty ||
+                  addRoomForm.controls.interactionWithGuests?.touched)
               "
             >
               <div
                 *ngIf="
-                  addRoomForm.get('interactionWithGuests')?.errors?.required
+                  addRoomForm.controls.interactionWithGuests?.errors?.required
                 "
               >
                 Description of your interaction with the guests is required.
@@ -200,12 +200,12 @@
               class="alert alert-danger"
               role="alert"
               *ngIf="
-                addRoomForm.get('price')?.invalid &&
-                (addRoomForm.get('price')?.dirty ||
-                  addRoomForm.get('price')?.touched)
+                addRoomForm.controls.price?.invalid &&
+                (addRoomForm.controls.price?.dirty ||
+                  addRoomForm.controls.price?.touched)
               "
             >
-              <div *ngIf="addRoomForm.get('price')?.errors?.required">
+              <div *ngIf="addRoomForm.controls.price?.errors?.required">
                 Room price is required.
               </div>
             </div>
@@ -235,25 +235,38 @@
             <label class="form-label">Available Amenities</label>
             <ul class="list-inline mb-0">
               <li
+                formArrayName="amenities"
                 class="list-inline-item"
-                *ngFor="let amenity of roomService.amenities; let index = index"
+                *ngFor="
+                  let amenity of amentiesFormArray.controls;
+                  let index = index
+                "
               >
                 <div class="custom-control custom-checkbox">
                   <input
+                    [formControlName]="index"
                     class="custom-control-input"
                     type="checkbox"
                     id="amenities_{{ index }}"
-                    name="amenities[]"
-                    (change)="addAmenity(amenity.name)"
                   />
                   <label
                     class="custom-control-label text-muted"
                     for="amenities_{{ index }}"
-                    >{{ amenity.name }}
+                    >{{ defaultAmenities[index].name }}
                   </label>
                 </div>
               </li>
             </ul>
+            <div
+              class="alert alert-danger"
+              role="alert"
+              *ngIf="
+              addRoomForm.controls.amenities?.invalid &&
+              (addRoomForm.controls.amenities?.dirty ||
+                addRoomForm.controls.amenities?.touched)
+            "            >
+              At least one amenity must be selected
+            </div>
           </div>
         </div>
       </div>
@@ -289,12 +302,12 @@
               class="alert alert-danger"
               role="alert"
               *ngIf="
-                addRoomForm.get('image')?.invalid &&
-                (addRoomForm.get('image')?.dirty ||
-                  addRoomForm.get('image')?.touched)
+                addRoomForm.controls.thumbnail?.invalid &&
+                (addRoomForm.controls.thumbnail?.dirty ||
+                  addRoomForm.controls.thumbnail?.touched)
               "
             >
-              <div *ngIf="addRoomForm.get('image')?.errors?.required">
+              <div *ngIf="addRoomForm.controls.thumbnail?.errors?.required">
                 Room image is required.
               </div>
             </div>
