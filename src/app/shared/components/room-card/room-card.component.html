@@ -8,7 +8,15 @@
     />
     <div class="card-img-overlay-bottom z-index-20">
       <div class="media text-white text-sm align-items-center avatar-card">
+        <!-- <img
+          *ngIf="room.avatar"
+          class="avatar avatar-border-white mr-2"
+          [src]="room?.avatar"
+          alt="Jack"
+        /> -->
+
         <img
+          *ngIf="room?.hostPicture"
           class="avatar avatar-border-white mr-2"
           [src]="room?.hostPicture"
           alt="Jack"

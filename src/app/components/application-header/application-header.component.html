@@ -1,35 +1,45 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand">
-    <a
-      ><img
-        src="https://i.ibb.co/rsjGJQy/2e70375a-b778-4275-8feb-e7562aa01c17-200x200.png"
-        alt="2e70375a-b778-4275-8feb-e7562aa01c17-200x200"
-        style="height: 55px; width: 80px"
-    /></a>
-  </a>
-  <button
-    class="navbar-toggler"
-    type="button"
-    data-toggle="collapse"
-    data-target="#navbarNav"
-    aria-controls="navbarNav"
-    aria-expanded="false"
-    aria-label="Toggle navigation"
-  >
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link" routerLink="/"
-          >Home <span class="sr-only">(current)</span></a
-        >
-      </li>
+<nav class="navbar navbar-expand-lg fixed-top shadow navbar-light bg-white">
+  <div class="container-fluid">
+    <img
+      src="https://www.freelogodesign.org/file/app/client/thumb/242f1167-4470-42fa-a1b9-b6b8aa092511_200x200.png?1613653841520"
+      alt="Directory logo"
+      class="mr-3"
+      style="height: 50px"
+    />
 
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/location/list">Locations</a>
-      </li>
-    </ul>
-    <application-user-icon></application-user-icon>
+    <button
+      class="navbar-toggler navbar-toggler-right"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarCollapse"
+      aria-controls="navbarCollapse"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <i class="fa fa-bars"></i>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul
+        class="navbar-nav align-items-center w-100 justify-content-between nav-list"
+      >
+        <div class="d-flex home-locations">
+          <li class="nav-item active">
+            <a class="nav-link" routerLink="/"
+              >Home <span class="sr-only">(current)</span></a
+            >
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/location/list">Locations</a>
+          </li>
+        </div>
+        <div>
+          <li class="nav-item">
+            <application-user-icon></application-user-icon>
+          </li>
+        </div>
+      </ul>
+    </div>
   </div>
 </nav>

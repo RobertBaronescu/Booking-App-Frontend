@@ -8,16 +8,6 @@ a:hover {
   text-decoration: none;
 }
 
-// .load-more-btn {
-//   background-color: #4e66f8;
-//   border: none;
-// }
-
-// .load-more-btn:hover {
-//   background-color: #314cfc;
-//   transition: all 0.3s ease-in-out;
-// }
-
 .location-cover {
   height: 100vh;
   background-position: center;
@@ -51,4 +41,10 @@ a:hover {
 
 .text-uppercase {
   font-weight: 900;
+}
+
+@media (max-width: 992px) {
+  .advantage-number {
+    left: -5px;
+  }
 }

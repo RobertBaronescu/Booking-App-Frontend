@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Location } from '../../interfaces/location.interface';
+import { Room } from '../../interfaces/room.interface';
 import { LocationService } from '../../services/location.service';
+import { RoomService } from '../../services/room.service';
 import { UserService } from '../../services/user.service';
 
 @Component({
@@ -12,16 +14,17 @@ import { UserService } from '../../services/user.service';
 })
 export class HomeComponent implements OnInit {
   listItems: Array<string> = [];
-  roomCards = [1, 2, 3, 4];
   locationForm = new FormGroup({
     location: new FormControl('', Validators.required),
   });
   locations!: Location[];
+  bestRatedRooms!: Room[];
 
   constructor(
     private userService: UserService,
     public locationService: LocationService,
-    private router: Router
+    private router: Router,
+    private roomService: RoomService
   ) {}
 
   onLocationsEmit(locations: Location[]) {
@@ -41,5 +44,13 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.userService.getUsers().subscribe();
+
+    this.roomService.getBestRatedRooms().subscribe((rooms) => {
+      this.bestRatedRooms = [...rooms];
+    });
+  }
+
+  redirectToRoom(roomId: string) {
+    this.router.navigate([`/room/${roomId}`]);
   }
 }

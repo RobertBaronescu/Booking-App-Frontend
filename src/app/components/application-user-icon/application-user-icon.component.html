@@ -1,4 +1,4 @@
-<a class="log-in" *ngIf="!user" routerLink="/login">Log in</a>
+<a class="log-in btn btn-primary" *ngIf="!user" routerLink="/login">Log in</a>
 
 <div class="btn-group dropleft" *ngIf="user">
   <div
@@ -17,4 +17,10 @@
       >Sign out</a
     >
   </div>
+</div>
+<div class="account-sign-out" *ngIf="user">
+  <a class="dropdown-item" routerLink="/user/account">Go to account</a>
+  <a class="dropdown-item log-out" routerLink="/home" (click)="logOut()"
+    >Sign out</a
+  >
 </div>

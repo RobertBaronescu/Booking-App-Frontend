@@ -16,6 +16,7 @@
 .host-img {
   height: 48px;
   width: 48px;
+  object-fit: cover;
 }
 
 .room-price {
@@ -43,7 +44,6 @@
 .edit-room {
   color: #4e66f8;
   &:hover {
-  
     cursor: pointer;
   }
 }

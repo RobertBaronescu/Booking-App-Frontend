@@ -18,7 +18,7 @@
               [formGroup]="locationForm"
               (ngSubmit)="formSubmit()"
             >
-              <div class="col-12 col-lg-9">
+              <div class="col-lg-9 col-md-9 col-sm-9">
                 <div class="form-group form-group-lg mb-lg-0 location-section">
                   <span class="location-span">Plan your next trip</span>
                   <kendo-autocomplete
@@ -31,13 +31,21 @@
                 </div>
               </div>
 
-              <div class="col-12 col-lg-3">
-                <button
-                  class="btn btn-md btn-primary btn-block animate-up-2 find-a-desk-btn"
-                  type="submit"
-                >
-                  Search
-                </button>
+              <div class="col-lg-3 col-md-3 col-sm-3">
+                <div class="form-group form-group-lg mb-lg-0">
+                  <button
+                    class="btn btn-md btn-primary btn-block animate-up-2 find-a-desk-btn"
+                    type="submit"
+                  >
+                    Search
+                  </button>
+                  <button
+                    class="btn btn-md btn-primary btn-block animate-up-2 find-a-desk-search"
+                    type="submit"
+                  >
+                    <i class="fas fa-search"></i>
+                  </button>
+                </div>
               </div>
             </form>
           </div>
@@ -98,16 +106,16 @@
     <div class="row mb-3">
       <div class="col-md-8">
         <p class="subtitle text-primary like-a-local-text">Stay like a local</p>
-        <h2 class="our-guides">Our guides</h2>
+        <h2 class="our-guides">Our locations</h2>
       </div>
-      <div class="col-md-4 d-lg-flex align-items-center justify-content-end">
+      <!-- <div class="col-md-4 d-lg-flex align-items-center justify-content-end">
         <a
           class="text-muted text-sm see-all-guides"
           routerLink="/location/list"
         >
           See all locations<i class="fas fa-angle-double-right ml-2"></i
         ></a>
-      </div>
+      </div> -->
     </div>
     <app-location-card
       (locationsEmitter)="onLocationsEmit($event)"
@@ -118,22 +126,18 @@
   <div class="container">
     <div class="row mb-5">
       <div class="col-md-8">
-        <p class="subtitle text-secondary">
-          Hurry up, these are expiring soon.
-        </p>
-        <h2>Last minute deals</h2>
-      </div>
-      <div class="col-md-4 d-lg-flex align-items-center justify-content-end">
-        <a class="text-muted text-sm">
-          See all deals<i class="fas fa-angle-double-right ml-2"></i
-        ></a>
+        <p class="subtitle text-secondary">Our best rated rooms</p>
+        <h2 class="check-them-out">Check them out</h2>
       </div>
     </div>
   </div>
   <div class="container">
     <div class="row d-flex">
-      <div class="col-sm-3" *ngFor="let card of roomCards">
-        <!-- <app-room-card></app-room-card> -->
+      <div class="col-sm-3" *ngFor="let room of bestRatedRooms">
+        <app-room-card
+          [room]="room"
+          (navigateClick)="redirectToRoom($event)"
+        ></app-room-card>
       </div>
     </div>
   </div>

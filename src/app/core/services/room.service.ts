@@ -34,6 +34,10 @@ export class RoomService {
     return this.http.get<Room[]>('http://localhost:3000/rooms');
   }
 
+  getBestRatedRooms(): Observable<Room[]> {
+    return this.http.get<Room[]>('http://localhost:3000/rooms/best-rated');
+  }
+
   getRoomsByHost(hostId: string): Observable<Room[]> {
     return this.http.get<Room[]>(`http://localhost:3000/rooms/host/${hostId}`);
   }

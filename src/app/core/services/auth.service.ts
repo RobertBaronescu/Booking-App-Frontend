@@ -22,7 +22,7 @@ export class AuthService {
 
   constructor(private http: HttpClient, public router: Router) {}
 
-  // Sign-up
+  
   signUp(user: User): Observable<any> {
     let api = `${this.endpoint}/register`;
     return this.http.post(api, user).pipe(
@@ -62,14 +62,8 @@ export class AuthService {
     return authToken !== null ? true : false;
   }
 
-  // doLogout() {
-  //   let removeToken = localStorage.removeItem('access_token');
-  //   if (removeToken == null) {
-  //     this.router.navigate(['log-in']);
-  //   }
-  // }
+ 
 
-  // User profile
   getUserProfile(id: any): Observable<any> {
     let api = `${this.endpoint}/user-profile/${id}`;
     return this.http.get(api, { headers: this.headers }).pipe(
@@ -80,14 +74,12 @@ export class AuthService {
     );
   }
 
-  // Error
+
   handleError(error: HttpErrorResponse) {
     let msg = '';
     if (error.error instanceof ErrorEvent) {
-      // client-side error
       msg = error.error.message;
     } else {
-      // server-side error
       msg = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
     return throwError(msg);

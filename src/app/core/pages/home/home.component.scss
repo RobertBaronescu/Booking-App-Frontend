@@ -16,8 +16,7 @@ body {
 }
 
 .home-section {
-  height: 90vh;
-
+  height: 100vh;
   position: relative;
 }
 
@@ -140,11 +139,50 @@ body {
   align-items: center;
 }
 
+.find-a-desk-search {
+  display: none;
+  opacity: 1;
+  border-radius: 10rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #fff;
+  background-color: #4e66f8;
+  border-color: #4e66f8;
+}
+
 @media (max-width: 767px) {
   .find-your-space-title {
     font-size: 3.5rem;
     text-shadow: 2px 2px 2px rgb(0 0 0 / 10);
     font-weight: 900 !important;
+  }
+  .location-span {
+    display: none;
+  }
+
+  .find-a-desk-btn {
+    display: none;
+  }
+
+  .find-a-desk-search {
+    display: inline;
+  }
+
+  .btn-block + .btn-block {
+    margin-top: 0rem !important;
+  }
+}
+
+@media (max-width: 575px) {
+  .btn-block + .btn-block {
+    margin-top: 0.5rem !important;
+  }
+  .find-a-desk-search {
+    width: 60%;
+  }
+  .search-form {
+    padding: 20px;
   }
 }
 
@@ -159,4 +197,13 @@ body {
   width: 300px;
 }
 
+.form-group {
+  margin-bottom: 0ex;
+}
 
+.check-them-out {
+  font-size: 32px;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+  line-height: 1.3;
+}

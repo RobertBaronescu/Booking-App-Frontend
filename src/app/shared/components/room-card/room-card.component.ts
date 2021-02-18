@@ -1,8 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
 import { Room } from 'src/app/core/interfaces/room.interface';
-import { RoomService } from 'src/app/core/services/room.service';
 
 @Component({
   selector: 'app-room-card',

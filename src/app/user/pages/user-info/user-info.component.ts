@@ -71,9 +71,8 @@ export class UserInfoComponent implements OnInit {
       const user = { picture: this.imageSrc, id: String(this.user?._id) };
       this.userService.changeUserPicture(user).subscribe((user) => {
         this.userService.currentUser$.next(user as User);
+        this.imageForm.reset();
       });
     }
-    this.imageForm.reset();
-    this.router.navigate(['/home']);
   }
 }
