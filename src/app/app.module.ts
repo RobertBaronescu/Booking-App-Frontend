@@ -10,6 +10,8 @@ import { ApplicationFooterComponent } from './components/application-footer/appl
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './shared/authconfig.interceptor';
 import { ApplicationUserIconComponent } from './components/application-user-icon/application-user-icon.component';
+import { ApplicationLoaderComponent } from './components/application-loader/application-loader.component';
+import { LoaderInterceptor } from './shared/loader.interceptor';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,7 @@ import { ApplicationUserIconComponent } from './components/application-user-icon
     ApplicationHeaderComponent,
     ApplicationFooterComponent,
     ApplicationUserIconComponent,
+    ApplicationLoaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,6 +33,11 @@ import { ApplicationUserIconComponent } from './components/application-user-icon
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoaderInterceptor,
       multi: true,
     },
   ],

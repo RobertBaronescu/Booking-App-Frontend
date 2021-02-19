@@ -2,13 +2,13 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { range, result } from 'lodash';
 import * as moment from 'moment';
 import { Reservation } from 'src/app/core/interfaces/reservation.interface';
 import { Room } from 'src/app/core/interfaces/room.interface';
 import { User } from 'src/app/core/interfaces/user.interface';
 import { RoomService } from 'src/app/core/services/room.service';
 import { UserService } from 'src/app/core/services/user.service';
-
 
 @UntilDestroy()
 @Component({
@@ -25,7 +25,6 @@ export class RoomBookingComponent implements OnInit, OnDestroy {
         const endDate = moment(reservation.endDate);
         const bookedRange = this.enumerateDaysBetweenDates(startDate, endDate);
         this.disabledCheckInDates.push(...bookedRange);
-        this.disabledCheckOutDates.push(...bookedRange);
       });
     }
   }
@@ -39,8 +38,8 @@ export class RoomBookingComponent implements OnInit, OnDestroy {
   });
   minDate: Date = new Date(2021, 0, 1);
   maxDate: Date = new Date(2021, 11, 31);
-  disabledCheckInDates: Date[] = [];
-  disabledCheckOutDates: Date[] = [];
+  disabledCheckInDates: Date[] = [new Date()];
+  disabledCheckOutDates: Date[] = [new Date()];
 
   private _room!: Room;
 
@@ -63,9 +62,9 @@ export class RoomBookingComponent implements OnInit, OnDestroy {
 
     const startOfYear = moment(this.minDate);
     const toDate = moment(new Date(Date.now()));
-
     const results: Date[] = this.enumerateDaysBetweenDates(startOfYear, toDate);
-    this.disabledCheckInDates = [...results];
+
+    this.disabledCheckInDates.push(...results);
   }
 
   redirectToEditRoom() {
@@ -101,13 +100,38 @@ export class RoomBookingComponent implements OnInit, OnDestroy {
   onCheckInDateChange(value: Date) {
     this.checkInDate = value;
 
-    this.disabledCheckOutDates.push(
-      ...this.enumerateDaysBetweenDates(
-        moment(new Date(2021, 0, 1)),
-        moment(value)
-      )
+    this.disabledCheckOutDates = [];
+    this.checkOutDate = new Date();
+
+    const rangeBeforeCheckIn = this.enumerateDaysBetweenDates(
+      moment(new Date(2021, 0, 1)),
+      moment(value)
     );
-    console.log(Array.from(new Set(this.disabledCheckOutDates)));
+
+    this.disabledCheckOutDates = this.filterUniqueDates([
+      ...rangeBeforeCheckIn,
+      ...this.disabledCheckInDates,
+      value,
+    ]);
+
+    const foundFirstDateAfterCheckIn = this.disabledCheckInDates.find(
+      (date) => new Date(date).getTime() > new Date(value).getTime()
+    );
+
+    if (foundFirstDateAfterCheckIn) {
+      const disabledRange = this.enumerateDaysBetweenDates(
+        moment(foundFirstDateAfterCheckIn),
+        moment(this.maxDate)
+      );
+      this.disabledCheckOutDates = this.filterUniqueDates([
+        ...this.disabledCheckOutDates,
+        ...disabledRange,
+      ]);
+    }
+  }
+
+  onCheckOutDateChange(value: Date) {
+    this.checkOutDate = value;
   }
 
   enumerateDaysBetweenDates(startDate: any, endDate: any): Date[] {
@@ -120,6 +144,28 @@ export class RoomBookingComponent implements OnInit, OnDestroy {
     }
 
     return dates;
+  }
+
+  sortDatesAscending(dateArray: Date[]): Date[] {
+    return [
+      ...dateArray.sort(
+        (a, b) => new Date(b).getTime() - new Date(a).getTime()
+      ),
+    ];
+  }
+
+  filterUniqueDates(data: Date[]) {
+    const lookup = new Set();
+
+    return data.filter((date) => {
+      const serialised = date.getTime();
+      if (lookup.has(serialised)) {
+        return false;
+      } else {
+        lookup.add(serialised);
+        return true;
+      }
+    });
   }
 
   ngOnDestroy(): void {}

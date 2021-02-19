@@ -36,12 +36,13 @@
         <kendo-datepicker
           id="bookingEndDate"
           class="date-picker"
-          [(value)]="checkOutDate"
+          [value]="checkOutDate"
           [disabledDates]="disabledCheckOutDates"
           [min]="minDate"
           [max]="maxDate"
           [disabled]="!checkInDate"
           [format]="'dd/MMM/yyyy'"
+          (valueChange)="onCheckOutDateChange($event)"
         ></kendo-datepicker>
       </div>
     </div>
