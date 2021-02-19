@@ -38,7 +38,7 @@ export class RoomBookingComponent implements OnInit, OnDestroy {
   });
   minDate: Date = new Date(2021, 0, 1);
   maxDate: Date = new Date(2021, 11, 31);
-  disabledCheckInDates: Date[] = [new Date()];
+  disabledCheckInDates: Date[] = [];
   disabledCheckOutDates: Date[] = [new Date()];
 
   private _room!: Room;
