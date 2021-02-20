@@ -47,6 +47,7 @@ export class HomeComponent implements OnInit {
 
     this.roomService.getBestRatedRooms().subscribe((rooms) => {
       this.bestRatedRooms = [...rooms];
+      console.log(this.bestRatedRooms);
     });
   }
 
