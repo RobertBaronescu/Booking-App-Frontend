@@ -22,7 +22,6 @@ export class AuthService {
 
   constructor(private http: HttpClient, public router: Router) {}
 
-  
   signUp(user: User): Observable<any> {
     let api = `${this.endpoint}/register`;
     return this.http.post(api, user).pipe(
@@ -35,9 +34,7 @@ export class AuthService {
     );
   }
 
-
   signIn(user: any) {
-    //modificat cu obiect, sa vina un obiect
     return this.http
       .post<{ token: string }>('http://localhost:3000/login', user)
       .pipe(
@@ -62,8 +59,6 @@ export class AuthService {
     return authToken !== null ? true : false;
   }
 
- 
-
   getUserProfile(id: any): Observable<any> {
     let api = `${this.endpoint}/user-profile/${id}`;
     return this.http.get(api, { headers: this.headers }).pipe(
@@ -73,7 +68,6 @@ export class AuthService {
       catchError(this.handleError)
     );
   }
-
 
   handleError(error: HttpErrorResponse) {
     let msg = '';

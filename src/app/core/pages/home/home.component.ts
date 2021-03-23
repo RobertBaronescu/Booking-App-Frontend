@@ -47,11 +47,11 @@ export class HomeComponent implements OnInit {
 
     this.roomService.getBestRatedRooms().subscribe((rooms) => {
       this.bestRatedRooms = [...rooms];
-      console.log(this.bestRatedRooms);
     });
   }
 
   redirectToRoom(roomId: string) {
-    this.router.navigate([`/room/${roomId}`]);
+      this.router.navigate([`/room/${roomId}`]);
+  
   }
 }

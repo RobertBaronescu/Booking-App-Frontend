@@ -12,7 +12,6 @@ import { LocationService } from '../../../core/services/location.service';
 export class LocationSingleComponent implements OnInit {
   location: Location | any;
   rooms!: Room[];
-  locationImage!: string;
 
   roomsCityName: any;
 
@@ -24,10 +23,10 @@ export class LocationSingleComponent implements OnInit {
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
+
     this.locationService.getLocation(String(id)).subscribe((location) => {
       this.location = location;
       this.rooms = location.rooms;
-      this.locationImage = String(location.image);
     });
   }
 

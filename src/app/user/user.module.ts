@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UserRoutingModule } from './user-routing.module';
-import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 import { UserAccountComponent } from './pages/user-account/user-account.component';
 import { SharedModule } from '../shared/shared.module';
 import { UserInfoComponent } from './pages/user-info/user-info.component';
@@ -19,7 +18,6 @@ import { BookingsGuestsComponent } from './components/bookings-guests/bookings-g
 
 @NgModule({
   declarations: [
-    UserProfileComponent,
     UserAccountComponent,
     UserInfoComponent,
     AddRoomStartComponent,
@@ -39,7 +37,6 @@ import { BookingsGuestsComponent } from './components/bookings-guests/bookings-g
     ReactiveFormsModule,
     FormsModule,
     NgxDropzoneModule,
-
   ],
   providers: [],
 })

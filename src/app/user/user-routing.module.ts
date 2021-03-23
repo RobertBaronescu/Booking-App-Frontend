@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 import { UserAccountComponent } from './pages/user-account/user-account.component';
 import { UserBookingsComponent } from './pages/user-bookings/user-bookings.component';
 import { AddEditRoomComponent } from './components/add-edit-room/add-edit-room.component';
@@ -12,7 +11,6 @@ import { UserInfoComponent } from './pages/user-info/user-info.component';
 import { UserSecurityComponent } from './pages/user-security/user-security.component';
 
 const routes: Routes = [
-  { path: '', component: UserProfileComponent },
   {
     path: 'account',
     component: UserAccountComponent,

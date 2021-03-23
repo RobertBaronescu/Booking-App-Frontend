@@ -1,17 +1,5 @@
-import {
-  Component,
-  ElementRef,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-  ViewChild,
-} from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Review } from 'src/app/core/interfaces/review.interface';
-
-import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
   selector: 'app-room-reviews',
@@ -25,10 +13,7 @@ export class RoomReviewsComponent implements OnInit {
 
   stars = [1, 2, 3, 4, 5];
 
-  constructor(
-    private userService: UserService,
-    private route: ActivatedRoute
-  ) {}
+  constructor() {}
 
   ngOnInit(): void {}
 

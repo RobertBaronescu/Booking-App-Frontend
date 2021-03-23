@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Room } from 'src/app/core/interfaces/room.interface';
-import { LocationService } from 'src/app/core/services/location.service';
 import { RoomService } from 'src/app/core/services/room.service';
 import { UserService } from 'src/app/core/services/user.service';
 
@@ -12,6 +11,7 @@ import { UserService } from 'src/app/core/services/user.service';
 })
 export class HostRoomsComponent implements OnInit {
   rooms!: Room[];
+
   constructor(
     private roomService: RoomService,
     private userService: UserService,
